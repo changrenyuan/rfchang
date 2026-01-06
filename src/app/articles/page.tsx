@@ -124,6 +124,12 @@ export default function ArticlesPage() {
                 知识库
               </Link>
               <Link
+                href="/tools"
+                className="text-sm font-medium text-slate-700 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400"
+              >
+                在线工具
+              </Link>
+              <Link
                 href="/consultation"
                 className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 transition-colors"
               >

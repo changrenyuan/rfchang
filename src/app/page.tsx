@@ -79,6 +79,12 @@ export default function Home() {
                 知识库
               </Link>
               <Link
+                href="/tools"
+                className="text-sm font-medium text-slate-700 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400"
+              >
+                在线工具
+              </Link>
+              <Link
                 href="/consultation"
                 className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 transition-colors"
               >
@@ -107,6 +113,12 @@ export default function Home() {
                 className="rounded-lg bg-blue-600 px-8 py-3 text-base font-medium text-white hover:bg-blue-700 transition-colors"
               >
                 开始学习
+              </Link>
+              <Link
+                href="/tools"
+                className="rounded-lg border border-slate-300 px-8 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 dark:border-slate-600 dark:text-slate-300 dark:hover:bg-slate-800 transition-colors"
+              >
+                在线工具
               </Link>
               <Link
                 href="/consultation"
