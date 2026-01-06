@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { articleManager } from '../../../../../storage/database/articleManager';
+import { articleManager } from '../../../../storage/database/articleManager';
 
 export async function GET(
   request: NextRequest,

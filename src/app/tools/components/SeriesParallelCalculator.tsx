@@ -153,11 +153,11 @@ export default function SeriesParallelCalculator() {
                   </div>
                   {parseFloat(result.xp) > 0 ? (
                     <div className="font-mono text-slate-700 dark:text-slate-300">
-                      L = {result.xp} / (2π × {parseFloat(f) × 1000000}) = {(parseFloat(result.xp) / (2 * Math.PI * parseFloat(f) * 1000000) * 1e9).toFixed(3)} nH
+                      L = {result.xp} / (2π × {parseFloat(f) * 1000000}) = {(parseFloat(result.xp) / (2 * Math.PI * parseFloat(f) * 1000000) * 1e9).toFixed(3)} nH
                     </div>
                   ) : (
                     <div className="font-mono text-slate-700 dark:text-slate-300">
-                      C = 1 / (2π × {parseFloat(f) × 1000000} × {Math.abs(parseFloat(result.xp))}) = {(1 / (2 * Math.PI * parseFloat(f) * 1000000 * Math.abs(parseFloat(result.xp))) * 1e12).toFixed(3)} pF
+                      C = 1 / (2π × {parseFloat(f) * 1000000} × {Math.abs(parseFloat(result.xp))}) = {(1 / (2 * Math.PI * parseFloat(f) * 1000000 * Math.abs(parseFloat(result.xp))) * 1e12).toFixed(3)} pF
                     </div>
                   )}
                 </div>
@@ -214,11 +214,11 @@ export default function SeriesParallelCalculator() {
                   </div>
                   {parseFloat(result.xs) > 0 ? (
                     <div className="font-mono text-slate-700 dark:text-slate-300">
-                      L = {result.xs} / (2π × {parseFloat(f) × 1000000}) = {(parseFloat(result.xs) / (2 * Math.PI * parseFloat(f) * 1000000) * 1e9).toFixed(3)} nH
+                      L = {result.xs} / (2π × {parseFloat(f) * 1000000}) = {(parseFloat(result.xs) / (2 * Math.PI * parseFloat(f) * 1000000) * 1e9).toFixed(3)} nH
                     </div>
                   ) : (
                     <div className="font-mono text-slate-700 dark:text-slate-300">
-                      C = 1 / (2π × {parseFloat(f) × 1000000} × {Math.abs(parseFloat(result.xs))}) = {(1 / (2 * Math.PI * parseFloat(f) * 1000000 * Math.abs(parseFloat(result.xs))) * 1e12).toFixed(3)} pF
+                      C = 1 / (2π × {parseFloat(f) * 1000000} × {Math.abs(parseFloat(result.xs))}) = {(1 / (2 * Math.PI * parseFloat(f) * 1000000 * Math.abs(parseFloat(result.xs))) * 1e12).toFixed(3)} pF
                     </div>
                   )}
                 </div>
