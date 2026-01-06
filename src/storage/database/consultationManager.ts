@@ -1,4 +1,4 @@
-import { eq, desc, SQL } from 'drizzle-orm';
+import { eq, and, desc, SQL } from 'drizzle-orm';
 import { getDb } from 'coze-coding-dev-sdk';
 import { consultations, users, insertConsultationSchema, insertUserSchema, type Consultation, type NewConsultation, type NewUser } from './shared/schema';
 
