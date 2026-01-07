@@ -1,0 +1,89 @@
+{
+  "publications": [
+    {
+      "id": "dpd-5g-pa-2024",
+      "year": 2024,
+      "title": "Digital Predistortion for 5G Power Amplifiers: A Deep Learning Approach",
+      "authors": [
+        {
+          "name": "Chang Renyuan",
+          "affiliation": "RF Research Lab"
+        },
+        {
+          "name": "Co-author",
+          "affiliation": "Institution"
+        }
+      ],
+      "journal": "IEEE Transactions on Microwave Theory and Techniques",
+      "volume": "72",
+      "issue": "3",
+      "pages": "1234-1245",
+      "doi": "10.1109/TMTT.2024.1234567",
+      "abstract": "This paper presents a novel deep learning-based digital predistortion (DPD) technique for linearizing 5G power amplifiers (PAs). The proposed method achieves superior linearization performance compared to traditional memory polynomial models, with a 5-10 dB improvement in adjacent channel power ratio (ACPR) reduction.",
+      "keywords": [
+        "Digital Predistortion",
+        "5G",
+        "Power Amplifier",
+        "Deep Learning",
+        "Linearization"
+      ],
+      "pdfUrl": "/papers/dpd-5g-pa-2024.pdf",
+      "codeUrl": "https://github.com/changrenyuan/dpd-5g-pa",
+      "bibtex": "@article{chang2024dpd,\n  title={Digital Predistortion for 5G Power Amplifiers: A Deep Learning Approach},\n  author={Chang, Renyuan and Coauthor},\n  journal={IEEE Transactions on Microwave Theory and Techniques},\n  volume={72},\n  number={3},\n  pages={1234--1245},\n  year={2024},\n  publisher={IEEE}\n}"
+    },
+    {
+      "id": "smith-chart-matching-2023",
+      "year": 2023,
+      "title": "Optimization of Impedance Matching Networks Using Smith Chart-Based Genetic Algorithms",
+      "authors": [
+        {
+          "name": "Chang Renyuan",
+          "affiliation": "RF Research Lab"
+        }
+      ],
+      "journal": "IEEE Microwave and Wireless Components Letters",
+      "volume": "33",
+      "issue": "6",
+      "pages": "567-569",
+      "doi": "10.1109/LMWC.2023.1234567",
+      "abstract": "A novel Smith chart-based genetic algorithm is proposed for optimizing impedance matching networks. The method efficiently explores the impedance space and finds optimal L-type, T-type, and π-type matching networks with constraints on component values and bandwidth.",
+      "keywords": [
+        "Smith Chart",
+        "Impedance Matching",
+        "Genetic Algorithm",
+        "Optimization"
+      ],
+      "pdfUrl": "/papers/smith-chart-matching-2023.pdf",
+      "bibtex": "@article{chang2023smith,\n  title={Optimization of Impedance Matching Networks Using Smith Chart-Based Genetic Algorithms},\n  author={Chang, Renyuan},\n  journal={IEEE Microwave and Wireless Components Letters},\n  volume={33},\n  number={6},\n  pages={567--569},\n  year={2023},\n  publisher={IEEE}\n}"
+    },
+    {
+      "id": "millimeter-wave-pa-2022",
+      "year": 2022,
+      "title": "Efficiency Enhancement of Millimeter-Wave Power Amplifiers Using Envelope Tracking",
+      "authors": [
+        {
+          "name": "Chang Renyuan",
+          "affiliation": "RF Research Lab"
+        },
+        {
+          "name": "Another Author",
+          "affiliation": "Partner Institution"
+        }
+      ],
+      "conference": "IEEE International Microwave Symposium (IMS)",
+      "location": "Denver, CO, USA",
+      "pages": "1-4",
+      "doi": "10.1109/IMS37656.2022.1234567",
+      "abstract": "This work presents an envelope tracking (ET) technique for improving the efficiency of millimeter-wave power amplifiers operating at 28 GHz. The proposed ET system achieves 10% efficiency improvement over fixed-bias operation while maintaining linearity specifications for 5G NR signals.",
+      "keywords": [
+        "Millimeter-Wave",
+        "Power Amplifier",
+        "Envelope Tracking",
+        "5G",
+        "Efficiency"
+      ],
+      "pdfUrl": "/papers/millimeter-wave-pa-2022.pdf",
+      "bibtex": "@inproceedings{chang2022mmwave,\n  title={Efficiency Enhancement of Millimeter-Wave Power Amplifiers Using Envelope Tracking},\n  author={Chang, Renyuan and Another},\n  booktitle={IEEE International Microwave Symposium (IMS)},\n  pages={1--4},\n  year={2022},\n  organization={IEEE}\n}"
+    }
+  ]
+}

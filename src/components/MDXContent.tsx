@@ -1,186 +1,205 @@
 'use client';
 
-import { MDXRemote } from 'next-mdx-remote/rsc';
-import { serialize } from 'next-mdx-remote/serialize';
-import KaTeX from './KaTeX';
-import SParameterChart from './SParameterChart';
-import SmithChart from './SmithChart';
+import React, { useEffect, useMemo, useState } from 'react';
+import { MDXRemote, type MDXRemoteProps } from 'next-mdx-remote/rsc';
+import rehypeKatex from 'rehype-katex';
+import remarkMath from 'remark-math';
+
+// 引入 KaTeX CSS
+import 'katex/dist/katex.min.css';
 
 /**
- * MDX 渲染器组件
- *
- * 支持：
- * - Markdown 语法
- * - LaTeX 公式（使用 $ 和 $$）
- * - 自定义 React 组件（图表、工具等）
- * - 代码高亮
+ * 代码块组件 - 使用 Shiki 高亮
  */
+function CodeBlock({ language, code }: { language: string; code: string }) {
+  const [highlighted, setHighlighted] = useState<string>('');
 
-// MDX 自定义组件映射
-const components = {
-  // LaTeX 公式组件
-  KaTeX: (props: any) => <KaTeX {...props} />,
+  useEffect(() => {
+    async function highlight() {
+      try {
+        // 动态导入 shiki
+        const { createHighlighter } = await import('shiki');
 
-  // 射频专用图表组件
-  SParameterChart: (props: any) => <SParameterChart {...props} />,
-  SmithChart: (props: any) => <SmithChart {...props} />,
+        const highlighter = await createHighlighter({
+          themes: ['github-light', 'nord'],
+          langs: ['python', 'matlab', 'cpp', 'typescript', 'javascript', 'bash'],
+        });
 
-  // 自定义标题样式（学术风格）
-  h1: ({ children }: any) => (
-    <h1 className="mt-12 mb-6 text-3xl font-light text-slate-900 dark:text-slate-100 serif">
-      {children}
-    </h1>
-  ),
-  h2: ({ children }: any) => (
-    <h2 className="mt-10 mb-4 text-2xl font-light text-slate-900 dark:text-slate-100 serif">
-      {children}
-    </h2>
-  ),
-  h3: ({ children }: any) => (
-    <h3 className="mt-8 mb-3 text-xl font-medium text-slate-900 dark:text-slate-100">
-      {children}
-    </h3>
-  ),
-  h4: ({ children }: any) => (
-    <h4 className="mt-6 mb-2 text-lg font-medium text-slate-900 dark:text-slate-100">
-      {children}
-    </h4>
-  ),
+        const isDark = document.documentElement.classList.contains('dark');
+        const html = highlighter.codeToHtml(code, {
+          lang: (language || 'text') as any,
+          theme: isDark ? 'nord' : ('github-light' as any),
+        });
 
-  // 段落样式（学术风格，更好的可读性）
-  p: ({ children }: any) => (
-    <p className="mb-6 leading-8 text-slate-700 dark:text-slate-300">
-      {children}
-    </p>
-  ),
-
-  // 列表样式
-  ul: ({ children }: any) => (
-    <ul className="mb-6 ml-8 list-disc space-y-2 text-slate-700 dark:text-slate-300">
-      {children}
-    </ul>
-  ),
-  ol: ({ children }: any) => (
-    <ol className="mb-6 ml-8 list-decimal space-y-2 text-slate-700 dark:text-slate-300">
-      {children}
-    </ol>
-  ),
-
-  // 代码块样式
-  pre: ({ children }: any) => (
-    <pre className="mb-6 overflow-x-auto rounded-lg bg-slate-900 p-4 text-sm text-slate-100">
-      {children}
-    </pre>
-  ),
-  code: ({ children, className }: any) => {
-    // 如果有 className（来自 highlighter），保持原样
-    if (className) {
-      return <code className={className}>{children}</code>;
+        setHighlighted(html);
+      } catch (error) {
+        console.error('Shiki highlight error:', error);
+        // 降级处理
+        setHighlighted(`<pre class="bg-code-block overflow-x-auto p-4 text-sm"><code>${code}</code></pre>`);
+      }
     }
-    // 行内代码
+    highlight();
+  }, [code, language]);
+
+  if (!highlighted) {
     return (
-      <code className="px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-sm text-slate-800 dark:text-slate-200 font-mono">
-        {children}
-      </code>
+      <pre className="bg-code-block overflow-x-auto p-4 text-sm">
+        <code>{code}</code>
+      </pre>
     );
-  },
+  }
 
-  // 引用样式（学术引用）
-  blockquote: ({ children }: any) => (
-    <blockquote className="mb-6 border-l-4 border-slate-300 dark:border-slate-700 pl-6 italic text-slate-600 dark:text-slate-400">
-      {children}
-    </blockquote>
-  ),
-
-  // 表格样式
-  table: ({ children }: any) => (
-    <div className="mb-6 overflow-x-auto">
-      <table className="min-w-full border border-slate-200 dark:border-slate-700">
-        {children}
-      </table>
-    </div>
-  ),
-  thead: ({ children }: any) => (
-    <thead className="bg-slate-50 dark:bg-slate-800">
-      {children}
-    </thead>
-  ),
-  tbody: ({ children }: any) => (
-    <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
-      {children}
-    </tbody>
-  ),
-  tr: ({ children }: any) => (
-    <tr className="hover:bg-slate-50 dark:hover:bg-slate-800">
-      {children}
-    </tr>
-  ),
-  th: ({ children }: any) => (
-    <th className="px-4 py-2 text-left text-sm font-medium text-slate-900 dark:text-slate-100">
-      {children}
-    </th>
-  ),
-  td: ({ children }: any) => (
-    <td className="px-4 py-2 text-sm text-slate-700 dark:text-slate-300">
-      {children}
-    </td>
-  ),
-
-  // 链接样式
-  a: ({ href, children }: any) => (
-    <a
-      href={href}
-      className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 underline"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      {children}
-    </a>
-  ),
-
-  // 分隔线
-  hr: () => (
-    <hr className="my-8 border-slate-200 dark:border-slate-700" />
-  ),
-
-  // 图片样式
-  img: ({ src, alt }: any) => (
-    <img
-      src={src}
-      alt={alt}
-      className="mb-6 rounded-lg w-full"
-      loading="lazy"
+  return (
+    <div
+      className="code-block-wrapper bg-code-block overflow-x-auto rounded-industrial-md"
+      dangerouslySetInnerHTML={{ __html: highlighted }}
     />
-  ),
-};
-
-interface MDXContentProps {
-  source: string;
+  );
 }
 
 /**
- * MDX 内容渲染组件
- *
- * @param source - MDX 源内容（Markdown + LaTeX）
- *
- * 示例：
- * <MDXContent source={markdownContent} />
+ * 公式块组件
  */
-export default function MDXContent({ source }: MDXContentProps) {
+function FormulaBlock({ children, label }: { children: React.ReactNode; label?: string }) {
   return (
-    <div className="prose prose-slate dark:prose-invert max-w-none">
-      <MDXRemote source={source} components={components} />
+    <div className="formula-block my-6">
+      <div className="mb-2 text-xs font-mono text-slate-500">
+        {label && <span className="uppercase tracking-wider">{label}</span>}
+      </div>
+      <div className="text-lg">{children}</div>
     </div>
   );
 }
 
 /**
- * 服务端序列化 MDX 内容
- *
- * 在服务器端使用，需要先序列化再传给客户端
- *
- * 示例：
- * const mdxSource = await serialize(markdownContent);
- * return <MDXContent source={mdxSource} />;
+ * 引用块组件 - IEEE 风格
  */
-export { serialize };
+function Citation({ author, year, title, journal }: { author: string; year: string; title: string; journal: string }) {
+  const format = `[${author}, ${year}] ${title}. ${journal}`;
+  return (
+    <div className="citation my-4">
+      <p className="font-mono text-xs text-slate-600 dark:text-slate-400">
+        {format}
+      </p>
+    </div>
+  );
+}
+
+/**
+ * 信息框组件
+ */
+function InfoBox({ type, children }: { type: 'info' | 'warning' | 'note'; children: React.ReactNode }) {
+  const colors = {
+    info: 'border-blue-200 bg-blue-50/50 dark:border-blue-900/30 dark:bg-blue-950/20',
+    warning: 'border-amber-200 bg-amber-50/50 dark:border-amber-900/30 dark:bg-amber-950/20',
+    note: 'border-slate-200 bg-slate-50/50 dark:border-slate-800 dark:bg-slate-900/20',
+  };
+
+  return (
+    <div className={`border-l-thin ${colors[type]} my-6 pl-4 py-3`}>
+      <div className="text-sm text-slate-700 dark:text-slate-300">
+        {children}
+      </div>
+    </div>
+  );
+}
+
+/**
+ * MDX 组件映射
+ */
+const components = {
+  // 代码块
+  pre: ({ children, ...props }: React.HTMLAttributes<HTMLPreElement>) => {
+    if (React.isValidElement(children) && 'props' in children) {
+      return children;
+    }
+    return <pre {...props} className="bg-code-block overflow-x-auto p-4 text-sm">{children}</pre>;
+  },
+  code: ({ className, children, ...props }: React.HTMLAttributes<HTMLElement>) => {
+    const match = /language-(\w+)/.exec(className || '');
+    const language = match ? match[1] : '';
+
+    if (match) {
+      return <CodeBlock language={language} code={String(children).replace(/\n$/, '')} />;
+    }
+
+    return (
+      <code
+        className="bg-code-block px-1 py-0.5 rounded-industrial-sm text-sm font-mono"
+        {...props}
+      >
+        {children}
+      </code>
+    );
+  },
+
+  // 自定义组件
+  Formula: FormulaBlock,
+  Citation: Citation,
+  InfoBox: InfoBox,
+
+  // 标题 - 带锚点
+  h1: ({ children, id, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
+    <h1 id={id} {...props} className="scroll-mt-20">
+      {children}
+    </h1>
+  ),
+  h2: ({ children, id, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
+    <h2 id={id} {...props} className="scroll-mt-20">
+      {children}
+    </h2>
+  ),
+  h3: ({ children, id, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
+    <h3 id={id} {...props} className="scroll-mt-20">
+      {children}
+    </h3>
+  ),
+  h4: ({ children, id, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
+    <h4 id={id} {...props} className="scroll-mt-20">
+      {children}
+    </h4>
+  ),
+};
+
+/**
+ * MDX 内容渲染器
+ * 支持 LaTeX 公式（KaTeX）和代码高亮（Shiki）
+ */
+export default function MDXContent({ source, ...props }: any) {
+  const options = useMemo(() => ({
+    mdxOptions: {
+      remarkPlugins: [remarkMath],
+      rehypePlugins: [[rehypeKatex, { throwOnError: false, strict: false }]],
+    },
+  }), []);
+
+  return (
+    <MDXRemote
+      source={source}
+      options={options}
+      components={components}
+      {...props}
+    />
+  );
+}
+
+/**
+ * 从 MDX 内容提取标题（用于生成目录）
+ */
+export function extractHeadings(source: string): Array<{ id: string; text: string; level: number }> {
+  const headings: Array<{ id: string; text: string; level: number }> = [];
+  const headingRegex = /^(#{1,4})\s+(.+)$/gm;
+  let match;
+
+  while ((match = headingRegex.exec(source)) !== null) {
+    const level = match[1].length;
+    const text = match[2].trim();
+    const id = text
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, '')
+      .replace(/\s+/g, '-');
+    headings.push({ id, text, level });
+  }
+
+  return headings;
+}
