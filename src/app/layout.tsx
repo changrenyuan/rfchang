@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`
   },
   description: siteConfig.seo.defaultDescription,
-  keywords: siteConfig.seo.keywords,
+  keywords: siteConfig.seo.keywords as unknown as string[],
   authors: [{ name: siteConfig.author, url: siteConfig.url }],
   creator: siteConfig.author,
   publisher: siteConfig.name,
