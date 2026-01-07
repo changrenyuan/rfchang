@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import { SearchBar } from './SearchBar';
 
 interface NavLink {
   label: string;
@@ -63,6 +64,7 @@ export function Navbar() {
               射频工程技术笔记
             </p>
           </div>
+
           <div className="flex items-center gap-6 text-sm">
             {navLinks.map((link) => (
               <div
@@ -80,7 +82,6 @@ export function Navbar() {
                   {link.label}
                 </Link>
 
-                {/* 下拉菜单 */}
                 {link.dropdown && activeDropdown === link.label && (
                   <div className="absolute left-0 mt-2 z-50 bg-[var(--bg-secondary)] min-w-[180px] py-2">
                     {link.dropdown.map((item) => (
@@ -97,6 +98,8 @@ export function Navbar() {
               </div>
             ))}
           </div>
+
+          <SearchBar />
         </div>
       </div>
     </nav>

@@ -1,4 +1,5 @@
 export { Navbar } from './Navbar';
+export { SearchBar } from './SearchBar';
 export { HeroSection } from './HeroSection';
 export { QuickEngineeringTools } from './QuickEngineeringTools';
 export { ResearchAreas } from './ResearchAreas';
