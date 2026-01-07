@@ -38,38 +38,42 @@ export default function AttenuatorCalculator() {
   };
 
   return (
-    <div>
-      <h3 className="mb-6 text-2xl font-bold text-slate-900 dark:text-white">
-        衰减器设计工具
-      </h3>
-      <p className="mb-8 text-slate-600 dark:text-slate-400">
-        计算 Π型和T型衰减器的电阻值
-      </p>
+    <div className="w-full">
+      <div className="mb-8">
+        <h3 className="font-semibold mb-4" style={{ fontFamily: 'var(--font-serif)', fontSize: '2rem', color: 'var(--text-primary)' }}>
+          Attenuator Design
+        </h3>
+        <p className="text-sm" style={{ fontFamily: 'var(--font-sans)', color: 'var(--text-secondary)', lineHeight: 1.75 }}>
+          Π型和T型衰减器电阻值计算，基于经典网络理论
+        </p>
+      </div>
 
-      <div className="space-y-8">
+      <div style={{ marginBottom: 'var(--space-8)' }}>
         {/* 衰减器类型选择 */}
-        <div>
-          <label className="mb-3 block font-medium text-slate-900 dark:text-white">
-            衰减器类型
+        <div className="mb-8">
+          <label className="mb-3 block text-sm font-semibold" style={{ fontFamily: 'var(--font-sans)', color: 'var(--text-primary)' }}>
+            衰减器类型 / Type
           </label>
           <div className="flex gap-4">
             <button
               onClick={() => setType('pi')}
-              className={`flex-1 rounded-lg border-2 px-4 py-3 transition-colors ${
-                type === 'pi'
-                  ? 'border-blue-500 bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300'
-                  : 'border-slate-200 bg-white text-slate-700 hover:border-blue-300 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300'
-              }`}
+              className="btn-industrial"
+              style={{
+                flex: 1,
+                borderColor: type === 'pi' ? 'var(--color-primary)' : undefined,
+                backgroundColor: type === 'pi' ? 'var(--color-primary-light)' : undefined,
+              }}
             >
               Π 型
             </button>
             <button
               onClick={() => setType('tee')}
-              className={`flex-1 rounded-lg border-2 px-4 py-3 transition-colors ${
-                type === 'tee'
-                  ? 'border-blue-500 bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300'
-                  : 'border-slate-200 bg-white text-slate-700 hover:border-blue-300 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300'
-              }`}
+              className="btn-industrial"
+              style={{
+                flex: 1,
+                borderColor: type === 'tee' ? 'var(--color-primary)' : undefined,
+                backgroundColor: type === 'tee' ? 'var(--color-primary-light)' : undefined,
+              }}
             >
               T 型
             </button>
@@ -77,9 +81,9 @@ export default function AttenuatorCalculator() {
         </div>
 
         {/* 输入参数 */}
-        <div className="grid gap-6 sm:grid-cols-2">
-          <div>
-            <label className="mb-2 block font-medium text-slate-900 dark:text-white">
+        <div className="grid gap-6 mb-8" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))' }}>
+          <div className="border-thin" style={{ backgroundColor: 'var(--bg-secondary)', padding: 'var(--space-4)' }}>
+            <label className="mb-2 block text-sm font-semibold" style={{ fontFamily: 'var(--font-sans)', color: 'var(--text-primary)' }}>
               特性阻抗 Z₀ (Ω)
             </label>
             <input
@@ -87,20 +91,20 @@ export default function AttenuatorCalculator() {
               step="0.1"
               value={z0}
               onChange={(e) => setZ0(e.target.value)}
-              className="w-full rounded-lg border border-slate-300 bg-white px-4 py-2 text-slate-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-slate-600 dark:bg-slate-700 dark:text-white"
+              className="input-industrial w-full text-lg font-mono"
               placeholder="50"
             />
           </div>
-          <div>
-            <label className="mb-2 block font-medium text-slate-900 dark:text-white">
-              衰减量 (dB)
+          <div className="border-thin" style={{ backgroundColor: 'var(--bg-secondary)', padding: 'var(--space-4)' }}>
+            <label className="mb-2 block text-sm font-semibold" style={{ fontFamily: 'var(--font-sans)', color: 'var(--text-primary)' }}>
+              衰减量 A (dB)
             </label>
             <input
               type="number"
               step="0.1"
               value={attenuation}
               onChange={(e) => setAttenuation(e.target.value)}
-              className="w-full rounded-lg border border-slate-300 bg-white px-4 py-2 text-slate-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-slate-600 dark:bg-slate-700 dark:text-white"
+              className="input-industrial w-full text-lg font-mono"
               placeholder="10"
             />
           </div>
@@ -108,108 +112,66 @@ export default function AttenuatorCalculator() {
 
         <button
           onClick={calculate}
-          className="w-full rounded-lg bg-blue-600 px-6 py-3 font-medium text-white hover:bg-blue-700 transition-colors"
+          className="btn-industrial w-full btn-primary"
         >
-          计算电阻值
+          计算 / Calculate
         </button>
-
-        {/* 结果显示 */}
-        {results && (
-          <>
-            <div className="rounded-lg border border-blue-200 bg-blue-50 p-6 dark:border-blue-900 dark:bg-blue-900/20">
-              <h4 className="mb-4 font-semibold text-slate-900 dark:text-white">
-                计算结果
-              </h4>
-              <div className="grid gap-4 sm:grid-cols-3">
-                <div className="text-center">
-                  <div className="mb-1 text-sm text-slate-600 dark:text-slate-400">
-                    R₁ (Ω)
-                  </div>
-                  <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
-                    {results.r1}
-                  </div>
-                </div>
-                <div className="text-center">
-                  <div className="mb-1 text-sm text-slate-600 dark:text-slate-400">
-                    R₂ (Ω)
-                  </div>
-                  <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
-                    {results.r2}
-                  </div>
-                </div>
-                <div className="text-center">
-                  <div className="mb-1 text-sm text-slate-600 dark:text-slate-400">
-                    R₃ (Ω)
-                  </div>
-                  <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
-                    {results.r3}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* 电路图说明 */}
-            <div className="rounded-lg border border-slate-200 bg-slate-50 p-6 dark:border-slate-700 dark:bg-slate-800">
-              <h4 className="mb-4 font-semibold text-slate-900 dark:text-white">
-                电路说明
-              </h4>
-              <div className="mb-4 text-sm text-slate-600 dark:text-slate-400">
-                {type === 'pi' ? (
-                  <div>
-                    <p className="mb-2">Π 型衰减器电路：</p>
-                    <div className="font-mono">
-                      输入 ── R₁ ─┬── 输出<br/>
-                                │<br/>
-                                R₂<br/>
-                                │<br/>
-                               GND<br/>
-                                │<br/>
-                                R₃<br/>
-                                │<br/>
-                               GND
-                    </div>
-                  </div>
-                ) : (
-                  <div>
-                    <p className="mb-2">T 型衰减器电路：</p>
-                    <div className="font-mono">
-                      输入 ── R₁ ─┬── R₃ ── 输出<br/>
-                                │<br/>
-                                R₂<br/>
-                                │<br/>
-                               GND
-                    </div>
-                  </div>
-                )}
-              </div>
-              <div className="space-y-2 text-sm">
-                <div className="font-mono text-slate-700 dark:text-slate-300">
-                  K = 10<sup>A/20</sup>
-                </div>
-                {type === 'pi' ? (
-                  <>
-                    <div className="font-mono text-slate-700 dark:text-slate-300">
-                      R₁ = R₃ = Z₀ × (K + 1) / (K - 1)
-                    </div>
-                    <div className="font-mono text-slate-700 dark:text-slate-300">
-                      R₂ = Z₀ × (K - 1) / (2√K)
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <div className="font-mono text-slate-700 dark:text-slate-300">
-                      R₁ = R₃ = Z₀ × (K - 1) / (K + 1)
-                    </div>
-                    <div className="font-mono text-slate-700 dark:text-slate-300">
-                      R₂ = 2 × Z₀ × √K / (K - 1)
-                    </div>
-                  </>
-                )}
-              </div>
-            </div>
-          </>
-        )}
       </div>
+
+      {/* 结果显示 */}
+      {results && (
+        <>
+          <div className="border-thin" style={{ backgroundColor: 'var(--bg-tertiary)', padding: 'var(--space-8)' }}>
+            <h4 className="mb-6 text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--text-tertiary)' }}>
+              计算结果 / Results
+            </h4>
+
+            <div className="grid gap-6" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))' }}>
+              <div className="border-thin" style={{ backgroundColor: 'var(--bg-secondary)', padding: 'var(--space-4)' }}>
+                <div className="mb-2 text-xs" style={{ color: 'var(--text-tertiary)' }}>R₁ (Ω)</div>
+                <div className="text-3xl font-mono font-semibold" style={{ color: 'var(--color-primary)' }}>
+                  {results.r1}
+                </div>
+              </div>
+
+              <div className="border-thin" style={{ backgroundColor: 'var(--bg-secondary)', padding: 'var(--space-4)' }}>
+                <div className="mb-2 text-xs" style={{ color: 'var(--text-tertiary)' }}>R₂ (Ω)</div>
+                <div className="text-3xl font-mono font-semibold" style={{ color: 'var(--color-primary)' }}>
+                  {results.r2}
+                </div>
+              </div>
+
+              <div className="border-thin" style={{ backgroundColor: 'var(--bg-secondary)', padding: 'var(--space-4)' }}>
+                <div className="mb-2 text-xs" style={{ color: 'var(--text-tertiary)' }}>R₃ (Ω)</div>
+                <div className="text-3xl font-mono font-semibold" style={{ color: 'var(--color-primary)' }}>
+                  {results.r3}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 电路图说明 */}
+          <div className="border-thin mt-6" style={{ backgroundColor: 'var(--bg-tertiary)', padding: 'var(--space-6)' }}>
+            <h4 className="mb-4 text-sm font-semibold" style={{ fontFamily: 'var(--font-serif)', color: 'var(--text-primary)' }}>
+              计算公式 / Formulas
+            </h4>
+            <div className="space-y-2 text-sm font-mono" style={{ color: 'var(--text-secondary)' }}>
+              <div>K = 10<sup>A/20</sup></div>
+              {type === 'pi' ? (
+                <>
+                  <div>R₁ = R₃ = Z₀ × (K + 1) / (K - 1)</div>
+                  <div>R₂ = Z₀ × (K - 1) / (2√K)</div>
+                </>
+              ) : (
+                <>
+                  <div>R₁ = R₃ = Z₀ × (K - 1) / (K + 1)</div>
+                  <div>R₂ = 2 × Z₀ × √K / (K - 1)</div>
+                </>
+              )}
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }
