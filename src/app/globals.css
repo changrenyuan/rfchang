@@ -298,36 +298,17 @@ code, pre, .code {
 .table-industrial {
   width: 100%;
   border-collapse: collapse;
-  font-family: var(--font-sans);
-  font-size: 0.875rem;
-  border-top: var(--border-width) solid var(--border-color-light);
 }
-
 .table-industrial th {
-  padding: var(--space-4);
-  text-align: left;
-  font-weight: 600;
-  border-bottom: var(--border-width) solid var(--border-color-light);
-  background-color: var(--bg-tertiary);
+  border-bottom: 2px solid var(--color-primary); /* 只有底部一条重线 */
   font-family: var(--font-serif);
-  font-size: 0.8125rem;
-  letter-spacing: 0.02em;
-}
-
-.table-industrial td {
   padding: var(--space-4);
-  border-bottom: var(--border-width) solid rgba(226, 232, 240, 0.5);
-  font-family: var(--font-mono);
-  font-size: 0.8125rem;
+  background: transparent;
 }
-
-/* 斑马纹 - 极淡的背景色 */
-.table-industrial tbody tr:nth-child(even) {
-  background-color: #F9FAFB;
-}
-
-.table-industrial tbody tr:hover {
-  background-color: #F1F5F9;
+.table-industrial td {
+  border-bottom: 1px solid var(--border-color-light); /* 极淡的横线 */
+  padding: var(--space-4);
+  font-family: var(--font-mono); /* 数据必须等宽 */
 }
 
 /* ========================================
@@ -366,15 +347,12 @@ code, pre, .code {
 }
 
 .quote-block {
-  background-color: rgba(241, 245, 249, 0.3);
-  border-left: 3px solid var(--color-primary);
-  padding: var(--space-4) var(--space-6);
-  margin: var(--space-6) 0;
+  border-left: 4px solid var(--color-primary);
+  padding: var(--space-6) var(--space-8);
+  background: var(--bg-tertiary);
   font-family: var(--font-serif);
   font-style: italic;
-  color: var(--text-secondary);
-  font-size: 1.0625rem;
-  line-height: 1.8;
+  font-size: 1.25rem;
 }
 
 /* ========================================
