@@ -423,7 +423,7 @@ export default function Home() {
 
       {/* 深度研究订阅 */}
       <section className="border-t border-thin py-16">
-        <div className="mx-auto max-w-3xl px-8">
+        <div className="content-container">
           <div className="border-thin bg-[var(--bg-secondary)] p-8">
             <div className="mb-6 flex justify-center">
               <FileText className="h-12 w-12 text-[var(--color-primary)]" />
@@ -472,7 +472,7 @@ export default function Home() {
 
       {/* 页脚 */}
       <footer className="border-t border-thin py-12">
-        <div className="mx-auto max-w-6xl px-8">
+        <div className="main-container">
           <div className="grid gap-8 md:grid-cols-4 mb-8">
             <div className="md:col-span-2">
               <Link
