@@ -298,12 +298,6 @@ export default function Home() {
           </div>
         </div>
       </footer>
-
-      <style jsx global>{`
-        .serif {
-          font-family: Georgia, 'Times New Roman', Times, serif;
-        }
-      `}</style>
     </div>
   );
 }
