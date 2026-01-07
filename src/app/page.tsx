@@ -1,172 +1,47 @@
 import Link from 'next/link';
 import { BookOpen, Code, FileText, User, ArrowRight, Activity, TrendingUp, Shield } from 'lucide-react';
-import { Metadata } from 'next';
+import { siteConfig } from '@/data/siteConfig';
+import { S21CurveDecoration } from '@/components/S21CurveDecoration';
 
-export const metadata: Metadata = {
-  title: '常人元 - 射频工程专家 | RF Engineering Lab',
-  description: '常人元 - 射频工程专家，专注射频电路设计、5G/6G 通信、高频电路工程研究与实践。研究方向包括大规模天线阵列、毫米波 PA 线性化、阻抗匹配网络设计等。',
-  keywords: ['常人元', '射频工程', 'RF Engineering', '5G', '6G', '毫米波', '射频PA线性化', '阻抗匹配', '链路预算'],
+export const metadata = {
+  title: `${siteConfig.name} | RF Engineering Lab`,
+  description: siteConfig.description,
+  keywords: siteConfig.seo.keywords,
   openGraph: {
-    title: '常人元 - 射频工程专家 | RF Engineering Lab',
-    description: '专注射频电路设计、5G/6G 通信、高频电路工程研究与实践',
-    type: 'website',
+    ...siteConfig.seo.openGraph,
+    title: `${siteConfig.name} | RF Engineering Lab`,
+    description: siteConfig.description,
   },
 };
 
 export default function Home() {
-  // 研究方向
-  const researchAreas = [
-    {
-      icon: Activity,
-      title: '5G/6G 射频前端设计',
-      description: 'Massive MIMO、毫米波功率放大器、滤波器组',
-      metrics: [
-        { label: '研究方向', value: '3' },
-        { label: '项目经验', value: '8+' },
-        { label: '技术深度', value: 'Advanced' },
-      ],
-      focus: ['大规模天线阵列', '毫米波 PA 线性化', '滤波器集成'],
-    },
-    {
-      icon: TrendingUp,
-      title: '高频电路与信号完整性',
-      description: '高速互连、电磁兼容、阻抗匹配',
-      metrics: [
-        { label: '设计案例', value: '15+' },
-        { label: '测试覆盖', value: '95%' },
-        { label: '验证周期', value: '< 2 weeks' },
-      ],
-      focus: ['差分对设计', '眼图分析', '电源完整性'],
-    },
-    {
-      icon: Shield,
-      title: '射频测量与校准',
-      description: '矢量网络分析仪、相位噪声、误差矢量幅度',
-      metrics: [
-        { label: '校准标准', value: 'IEEE' },
-        { label: '测试工具', value: '自研' },
-        { label: '准确度', value: '±0.5 dB' },
-      ],
-      focus: ['S 参数测量', '误差修正', '自动化测试'],
-    },
-  ];
-
-  // 近期技术札记
-  const technicalNotes = [
-    {
-      title: 'Wi-Fi 7 射频前端架构演进',
-      excerpt: '探讨 320 MHz 带宽、4096-QAM 调制对射频前端设计的挑战，分析频段干扰抑制方案与射频前端集成策略。',
-      date: '2025-01-15',
-      category: '技术解读',
-      readTime: '12 min',
-      isDeep: false,
-      tags: ['Wi-Fi 7', '前端架构', '频段干扰'],
-    },
-    {
-      title: '史密斯圆图在阻抗匹配中的深度应用',
-      excerpt: '从基础到高级：多种匹配网络的对比分析与优化策略，涵盖 L 型、T 型、π 型匹配网络的适用场景与设计方法。',
-      date: '2025-01-10',
-      category: '深度研究',
-      readTime: '25 min',
-      isDeep: true,
-      tags: ['史密斯圆图', '阻抗匹配', '优化策略'],
-    },
-    {
-      title: '毫米波功率放大器线性化技术综述',
-      excerpt: '数字预失真 (DPD) 与反馈技术在 28 GHz 频段的实现，分析线性化性能与效率权衡关系。',
-      date: '2025-01-05',
-      category: '学术论文',
-      readTime: '18 min',
-      isDeep: true,
-      tags: ['毫米波', 'PA', '线性化', 'DPD'],
-    },
-  ];
-
-  // 开源资源
-  const openSourceResources = [
-    {
-      name: 'rf-calculator',
-      description: 'Python 射频参数计算工具包，包含 S 参数、驻波比、回波损耗等常用计算模块',
-      type: 'Python Package',
-      language: 'Python',
-      stars: 234,
-      link: 'https://github.com/changrenyuan/rf-calculator',
-    },
-    {
-      name: 's-parameter-plotter',
-      description: 'Web-based S 参数可视化工具，支持 Touchstone 文件格式导入与矢量网络分析',
-      type: 'Web Tool',
-      language: 'TypeScript',
-      stars: 189,
-      link: '/tools/s-parameter-plotter',
-    },
-    {
-      name: 'impedance-matcher',
-      description: 'Matlab 阻抗匹配网络自动设计工具，支持多级匹配网络优化与 parasitic 参数补偿',
-      type: 'Matlab Script',
-      language: 'Matlab',
-      stars: 156,
-      link: 'https://github.com/changrenyuan/impedance-matcher',
-    },
-  ];
-
-  // 统计数据
-  const stats = [
-    { label: '技术札记', value: '42', unit: '篇' },
-    { label: '开源项目', value: '8', unit: '个' },
-    { label: '学术论文', value: '12', unit: '篇' },
-    { label: '工程案例', value: '25', unit: '个' },
-  ];
-
-  // JSON-LD 结构化数据 - Person + Expert
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "常人元",
-    "givenName": "人元",
-    "familyName": "常",
-    "jobTitle": "射频工程专家",
-    "description": "专注射频电路设计、5G/6G 通信、高频电路工程研究与实践",
-    "url": "https://rf-research.com",
-    "sameAs": [
-      "https://github.com/changrenyuan",
-      "https://www.linkedin.com/in/changry",
-      "https://scholar.google.com/citations?user=changry"
-    ],
-    "knowsAbout": [
-      "射频工程",
-      "RF Engineering",
-      "5G通信",
-      "6G通信",
-      "毫米波",
-      "Massive MIMO",
-      "功率放大器",
-      "阻抗匹配",
-      "S参数",
-      "线性化技术"
-    ],
-    "worksFor": {
-      "@type": "Organization",
-      "name": "RF Engineering Lab"
-    },
-    "alumniOf": {
-      "@type": "CollegeOrUniversity",
-      "name": "电子科技大学"
-    }
-  };
-
   return (
     <div className="min-h-screen bg-[var(--bg-primary)]">
       {/* JSON-LD 结构化数据 */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": siteConfig.author,
+            "jobTitle": "射频工程专家",
+            "description": siteConfig.description,
+            "url": siteConfig.url,
+            "sameAs": [siteConfig.social.github],
+            "knowsAbout": siteConfig.knowsAbout,
+            "worksFor": {
+              "@type": "Organization",
+              "name": siteConfig.name
+            }
+          })
+        }}
       />
 
-      {/* 导航栏 - 极简学术风格 */}
-      <nav className="border-b border-thin bg-[var(--bg-secondary)]">
+      {/* 导航栏 - 毛玻璃效果 + 半透明背景 */}
+      <nav className="sticky top-0 z-50 border-b-thin backdrop-blur-md bg-white/80">
         <div className="main-container">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between" style={{ padding: 'var(--space-4) 0' }}>
             <div>
               <Link href="/" className="text-xl font-serif font-semibold text-[var(--text-primary)]">
                 RF Research
@@ -176,44 +51,38 @@ export default function Home() {
               </p>
             </div>
             <div className="flex items-center gap-8 text-sm">
-              <Link
-                href="/notes"
-                className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
-              >
-                Notes
-              </Link>
-              <Link
-                href="/publications"
-                className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
-              >
-                Publications
-              </Link>
-              <Link
-                href="/tools"
-                className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
-              >
-                Tools
-              </Link>
-              <Link
-                href="/about"
-                className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
-              >
-                About
-              </Link>
+              {Object.entries(siteConfig.navigation).slice(1).map(([key, path]) => (
+                <Link
+                  key={key}
+                  href={path}
+                  className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+                >
+                  {key.charAt(0).toUpperCase() + key.slice(1)}
+                </Link>
+              ))}
             </div>
           </div>
         </div>
       </nav>
 
       {/* Hero 区域 - 学术格言与统计数据 */}
-      <section className="border-b border-thin py-16">
+      <section className="border-b-thin" style={{ padding: 'var(--space-20) 0' }}>
         <div className="content-container">
-          <blockquote className="mb-12 text-3xl font-serif font-light leading-relaxed text-[var(--text-primary)]">
-            "射频设计不仅是电路计算，更是对电磁波的深度理解与工程智慧的平衡。"
+          <blockquote className="quote-block mb-12 text-center">
+            {siteConfig.home.hero.title}
           </blockquote>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {stats.map((stat, index) => (
+          <p className="mb-8 text-center text-sm" style={{ color: 'var(--text-secondary)', lineHeight: 1.75 }}>
+            {siteConfig.home.hero.subtitle}
+          </p>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+            {[
+              { label: '技术札记', value: '42', unit: '篇' },
+              { label: '开源项目', value: '8', unit: '个' },
+              { label: '学术论文', value: '12', unit: '篇' },
+              { label: '工程案例', value: '25', unit: '个' },
+            ].map((stat, index) => (
               <div
                 key={index}
                 className="border-thin bg-[var(--bg-secondary)] p-4"
@@ -228,36 +97,44 @@ export default function Home() {
               </div>
             ))}
           </div>
+
+          <div className="flex justify-center gap-4">
+            <Link
+              href={siteConfig.home.hero.cta.primary.href}
+              className="btn-industrial btn-primary"
+            >
+              {siteConfig.home.hero.cta.primary.label}
+            </Link>
+            <Link
+              href={siteConfig.home.hero.cta.secondary.href}
+              className="btn-industrial"
+            >
+              {siteConfig.home.hero.cta.secondary.label}
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* 研究方向 - 带指标数据 */}
-      <section className="py-16">
+      {/* 研究方向 - 底线对齐，无四周边框 */}
+      <section style={{ padding: 'var(--space-20) 0' }}>
         <div className="main-container">
           <div className="mb-8 flex items-center justify-between">
             <h2 className="text-2xl font-serif font-light text-[var(--text-primary)]">
-              Research Areas
+              {siteConfig.home.research.title}
             </h2>
-            <Link
-              href="/about"
-              className="flex items-center gap-1 text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
-            >
-              查看详情
-              <ArrowRight className="h-4 w-4" />
-            </Link>
           </div>
 
           <div className="grid gap-6 md:grid-cols-3">
-            {researchAreas.map((area, index) => {
-              const Icon = area.icon;
+            {siteConfig.home.research.items.map((area, index) => {
+              const icons = [Activity, TrendingUp, Shield, BookOpen];
+              const Icon = icons[index];
               return (
                 <div
                   key={index}
-                  className="border-thin bg-[var(--bg-secondary)] p-6 hover:border-[var(--border-color-dark)] transition-colors"
+                  className="border-b-2 bg-[var(--bg-secondary)] p-6"
+                  style={{ borderColor: 'var(--color-primary)' }}
                 >
-                  <div className="mb-4">
-                    <Icon className="h-6 w-6 text-[var(--color-primary)]" />
-                  </div>
+                  <div className="mb-4 text-3xl">{area.icon}</div>
 
                   <h3 className="mb-2 text-lg font-serif font-medium text-[var(--text-primary)]">
                     {area.title}
@@ -267,23 +144,27 @@ export default function Home() {
                     {area.description}
                   </p>
 
-                  {/* 指标数据 */}
-                  <div className="mb-4 grid grid-cols-3 gap-2 text-xs">
-                    {area.metrics.map((metric, i) => (
-                      <div key={i} className="border-thin p-2">
-                        <div className="font-mono text-[var(--color-primary)]">{metric.value}</div>
-                        <div className="text-[var(--text-tertiary)]">{metric.label}</div>
+                  {/* 指标数据 - 底线对齐 */}
+                  <div className="mb-4 grid grid-cols-2 gap-2 text-xs border-b-thin pb-4">
+                    {Object.entries(area.metrics).map(([key, value], i) => (
+                      <div key={i}>
+                        <div className="font-mono text-[var(--color-primary)]">{value}</div>
+                        <div className="text-[var(--text-tertiary)]">{key === 'years' ? '经验' : '项目'}</div>
                       </div>
                     ))}
                   </div>
 
                   <div className="flex flex-wrap gap-1">
-                    {area.focus.map((item, i) => (
+                    {['高频电路', '阻抗匹配', 'S参数'].slice(0, 3).map((item, i) => (
                       <span
                         key={i}
-                        className="px-2 py-1 text-xs bg-[var(--bg-tertiary)] text-[var(--text-secondary)] rounded-industrial-sm"
+                        className="px-2 py-1 text-xs rounded-industrial-sm font-mono"
+                        style={{
+                          backgroundColor: 'var(--color-primary-light)',
+                          color: 'var(--color-primary)'
+                        }}
                       >
-                        {item}
+                        #{item}
                       </span>
                     ))}
                   </div>
@@ -294,64 +175,49 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 技术札记 - 增强信息密度 */}
-      <section className="border-t border-thin py-16">
-        <div className="content-container">
+      {/* 工程案例 - 集成 S21 曲线装饰 */}
+      <section className="border-t-thin" style={{ padding: 'var(--space-20) 0' }}>
+        <div className="main-container">
           <div className="mb-8 flex items-center justify-between">
             <h2 className="text-2xl font-serif font-light text-[var(--text-primary)]">
-              Recent Technical Notes
+              {siteConfig.home.projects.title}
             </h2>
-            <Link
-              href="/notes"
-              className="flex items-center gap-1 text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
-            >
-              全部札记 ({technicalNotes.length})
-              <ArrowRight className="h-4 w-4" />
-            </Link>
           </div>
 
-          <div className="space-y-4">
-            {technicalNotes.map((note, index) => (
+          <div className="grid gap-6 md:grid-cols-3">
+            {siteConfig.home.projects.items.map((project, index) => (
               <Link
                 key={index}
-                href={`/notes/${encodeURIComponent(note.title)}`}
-                className="block border-l-thin pl-4 py-3 hover:bg-[var(--bg-tertiary)] transition-colors"
+                href="#"
+                className="relative group border-thin bg-[var(--bg-secondary)] p-6 hover:border-[var(--border-color-dark)] transition-colors overflow-hidden"
               >
-                <div className="mb-2 flex items-center gap-3 text-xs text-[var(--text-tertiary)]">
-                  <span className="font-mono">{note.date}</span>
-                  <span>·</span>
-                  <span className="px-2 py-0.5 bg-[var(--bg-tertiary)] text-[var(--text-secondary)]">
-                    {note.category}
-                  </span>
-                  <span>·</span>
-                  <span>{note.readTime}</span>
-                  {note.isDeep && (
-                    <>
-                      <span>·</span>
-                      <span className="text-[var(--color-primary)] font-medium">
-                        深度研读
-                      </span>
-                    </>
-                  )}
+                {/* S21 曲线装饰背景 */}
+                <div className="absolute inset-0 pointer-events-none opacity-20">
+                  <S21CurveDecoration />
                 </div>
 
-                <h3 className="mb-2 text-lg font-serif font-medium text-[var(--text-primary)] hover:text-[var(--color-primary)] transition-colors">
-                  {note.title}
-                </h3>
-
-                <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-                  {note.excerpt}
-                </p>
-
-                <div className="mt-2 flex flex-wrap gap-1">
-                  {note.tags.map((tag, i) => (
+                {/* 内容层级 */}
+                <div className="relative z-10">
+                  <div className="mb-3 flex items-center justify-between">
                     <span
-                      key={i}
-                      className="px-2 py-0.5 text-xs bg-[var(--bg-code)] text-[var(--text-tertiary)] rounded-industrial-sm font-mono"
+                      className="px-2 py-1 text-xs font-mono rounded-industrial-sm"
+                      style={{
+                        backgroundColor: 'var(--color-primary-light)',
+                        color: 'var(--color-primary)'
+                      }}
                     >
-                      #{tag}
+                      #{project.category}
                     </span>
-                  ))}
+                    <Activity className="h-4 w-4 text-[var(--color-primary)]" />
+                  </div>
+
+                  <h3 className="mb-2 text-lg font-serif font-medium text-[var(--text-primary)] group-hover:text-[var(--color-primary)] transition-colors">
+                    {project.title}
+                  </h3>
+
+                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+                    {project.description}
+                  </p>
                 </div>
               </Link>
             ))}
@@ -359,29 +225,75 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 开源资源 - 统一列表风格 */}
-      <section className="border-t border-thin py-16">
+      {/* 技术标签 - 淡蓝色背景 */}
+      <section className="border-t-thin" style={{ padding: 'var(--space-20) 0' }}>
+        <div className="content-container">
+          <h2 className="mb-8 text-2xl font-serif font-light text-[var(--text-primary)]">
+            Technical Focus
+          </h2>
+
+          <div className="flex flex-wrap gap-2">
+            {siteConfig.home.tags.map((tag, index) => (
+              <span
+                key={index}
+                className="px-3 py-1.5 text-sm font-mono rounded-industrial-sm"
+                style={{
+                  backgroundColor: 'var(--color-primary-light)',
+                  color: 'var(--color-primary)'
+                }}
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 开源资源 */}
+      <section className="border-t-thin" style={{ padding: 'var(--space-20) 0' }}>
         <div className="main-container">
           <div className="mb-8 flex items-center justify-between">
             <h2 className="text-2xl font-serif font-light text-[var(--text-primary)]">
-              Open Source Resources
+              Open Source
             </h2>
-            <Link
-              href="https://github.com/changrenyuan"
+            <a
+              href={siteConfig.social.github}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1 text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
             >
               GitHub
               <ArrowRight className="h-4 w-4" />
-            </Link>
+            </a>
           </div>
 
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {openSourceResources.map((resource, index) => (
+            {[
+              {
+                name: 'rf-calculator',
+                description: 'Python 射频参数计算工具包',
+                language: 'Python',
+                type: 'Library',
+                stars: 234
+              },
+              {
+                name: 's-parameter-plotter',
+                description: 'Web-based S 参数可视化工具',
+                language: 'TypeScript',
+                type: 'Web Tool',
+                stars: 189
+              },
+              {
+                name: 'impedance-matcher',
+                description: 'Matlab 阻抗匹配网络自动设计',
+                language: 'Matlab',
+                type: 'Tool',
+                stars: 156
+              }
+            ].map((resource, index) => (
               <a
                 key={index}
-                href={resource.link}
+                href={`${siteConfig.social.github}/${resource.name}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="border-thin bg-[var(--bg-secondary)] p-5 hover:border-[var(--border-color-dark)] transition-colors group"
@@ -421,69 +333,19 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 深度研究订阅 */}
-      <section className="border-t border-thin py-16">
-        <div className="mx-auto max-w-3xl px-8">
-          <div className="border-thin bg-[var(--bg-secondary)] p-8">
-            <div className="mb-6 flex justify-center">
-              <FileText className="h-12 w-12 text-[var(--color-primary)]" />
-            </div>
-
-            <h2 className="mb-4 text-2xl font-serif font-light text-center text-[var(--text-primary)]">
-              深度研究资料
-            </h2>
-
-            <p className="mb-6 text-center text-sm text-[var(--text-secondary)] leading-relaxed">
-              研究笔记与核心案例的完整版本，包含详细的数学推导、实验数据与代码实现，
-              仅供深度学习者研读。
-            </p>
-
-            <div className="grid gap-4 sm:grid-cols-2 mb-6">
-              <div className="border-thin p-4">
-                <div className="mb-2 text-xs font-mono text-[var(--text-tertiary)]">Mathematical Derivation</div>
-                <div className="text-sm text-[var(--text-primary)]">完整的公式推导过程</div>
-              </div>
-              <div className="border-thin p-4">
-                <div className="mb-2 text-xs font-mono text-[var(--text-tertiary)]">Experimental Data</div>
-                <div className="text-sm text-[var(--text-primary)]">实测数据与仿真对比</div>
-              </div>
-              <div className="border-thin p-4">
-                <div className="mb-2 text-xs font-mono text-[var(--text-tertiary)]">Code Implementation</div>
-                <div className="text-sm text-[var(--text-primary)]">完整的代码实现</div>
-              </div>
-              <div className="border-thin p-4">
-                <div className="mb-2 text-xs font-mono text-[var(--text-tertiary)]">Reference</div>
-                <div className="text-sm text-[var(--text-primary)]">完整的参考文献</div>
-              </div>
-            </div>
-
-            <div className="flex justify-center">
-              <Link
-                href="/insights"
-                className="btn-industrial btn-primary"
-              >
-                查看研究资料
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* 页脚 */}
-      <footer className="border-t border-thin py-12">
-        <div className="mx-auto max-w-6xl px-8">
+      <footer className="border-t-thin" style={{ padding: 'var(--space-16) 0' }}>
+        <div className="main-container">
           <div className="grid gap-8 md:grid-cols-4 mb-8">
             <div className="md:col-span-2">
               <Link
                 href="/"
                 className="text-xl font-serif font-semibold text-[var(--text-primary)]"
               >
-                RF Research
+                {siteConfig.name}
               </Link>
               <p className="mt-2 text-sm text-[var(--text-secondary)] leading-relaxed">
-                专注射频电路设计、5G/6G 通信、高频电路工程实践。
-                提供技术笔记、工程工具与研究资料，促进射频工程知识分享。
+                {siteConfig.description}
               </p>
             </div>
 
@@ -492,46 +354,31 @@ export default function Home() {
                 导航
               </h4>
               <div className="space-y-2 text-sm">
-                <Link href="/notes" className="block text-[var(--text-secondary)] hover:text-[var(--text-primary)]">
-                  Technical Notes
-                </Link>
-                <Link href="/publications" className="block text-[var(--text-secondary)] hover:text-[var(--text-primary)]">
-                  Publications
-                </Link>
-                <Link href="/tools" className="block text-[var(--text-secondary)] hover:text-[var(--text-primary)]">
-                  Tools
-                </Link>
-                <Link href="/cases" className="block text-[var(--text-secondary)] hover:text-[var(--text-primary)]">
-                  工程案例
-                </Link>
+                {Object.entries(siteConfig.navigation).map(([key, path]) => (
+                  <Link key={key} href={path} className="block text-[var(--text-secondary)] hover:text-[var(--text-primary)]">
+                    {key.charAt(0).toUpperCase() + key.slice(1)}
+                  </Link>
+                ))}
               </div>
             </div>
 
             <div>
               <h4 className="mb-4 text-sm font-semibold text-[var(--text-primary)]">
-                关于
+                联系
               </h4>
               <div className="space-y-2 text-sm">
-                <Link href="/about" className="block text-[var(--text-secondary)] hover:text-[var(--text-primary)]">
-                  Biography
-                </Link>
-                <Link href="/about#contact" className="block text-[var(--text-secondary)] hover:text-[var(--text-primary)]">
-                  Contact
-                </Link>
-                <Link href="https://github.com/changrenyuan" target="_blank" className="block text-[var(--text-secondary)] hover:text-[var(--text-primary)]">
+                <a href={siteConfig.social.github} className="block text-[var(--text-secondary)] hover:text-[var(--text-primary)]">
                   GitHub
-                </Link>
+                </a>
+                <a href={`mailto:${siteConfig.social.email}`} className="block text-[var(--text-secondary)] hover:text-[var(--text-primary)]">
+                  Email
+                </a>
               </div>
             </div>
           </div>
 
-          <div className="border-t border-thin pt-8 text-center text-xs text-[var(--text-tertiary)]">
-            <p className="mb-2">
-              © 2025 RF Research. All rights reserved.
-            </p>
-            <p>
-              专注射频电路设计、5G/6G 通信、高频电路工程实践
-            </p>
+          <div className="border-t-thin pt-8 text-center text-xs text-[var(--text-tertiary)]">
+            © 2025 {siteConfig.author}. 专注射频工程实践.
           </div>
         </div>
       </footer>

@@ -108,6 +108,37 @@ function InfoBox({ type, children }: { type: 'info' | 'warning' | 'note'; childr
  * MDX 组件映射
  */
 const components = {
+  // 表格 - 工业风格
+  table: ({ children, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
+    <div className="table-mobile-wrapper my-8">
+      <table className="table-industrial" {...props}>
+        {children}
+      </table>
+    </div>
+  ),
+  thead: ({ children, ...props }: React.HTMLAttributes<HTMLTableSectionElement>) => (
+    <thead {...props}>{children}</thead>
+  ),
+  tbody: ({ children, ...props }: React.HTMLAttributes<HTMLTableSectionElement>) => (
+    <tbody {...props}>{children}</tbody>
+  ),
+  tr: ({ children, ...props }: React.HTMLAttributes<HTMLTableRowElement>) => (
+    <tr {...props}>{children}</tr>
+  ),
+  th: ({ children, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
+    <th {...props}>{children}</th>
+  ),
+  td: ({ children, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
+    <td {...props}>{children}</td>
+  ),
+
+  // 引用块 - 学术风格
+  blockquote: ({ children, ...props }: React.HTMLAttributes<HTMLQuoteElement>) => (
+    <blockquote className="quote-block" {...props}>
+      {children}
+    </blockquote>
+  ),
+
   // 代码块
   pre: ({ children, ...props }: React.HTMLAttributes<HTMLPreElement>) => {
     if (React.isValidElement(children) && 'props' in children) {
