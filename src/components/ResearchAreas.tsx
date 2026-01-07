@@ -12,7 +12,7 @@ export function ResearchAreas({ areas }: ResearchAreasProps) {
       <div className="main-container">
         <div className="mb-8 flex items-center justify-between">
           <h2 className="text-2xl font-serif font-light text-[var(--text-primary)]">
-            Research Areas
+            Engineering Problems I Focus On
           </h2>
           <Link
             href="/about"
