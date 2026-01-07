@@ -1,341 +1,211 @@
 import Link from 'next/link';
-import {
-  Radio,
-  Signal,
-  Waves,
-  Settings,
-  Calculator,
-  Zap,
-  ChevronRight
-} from 'lucide-react';
+import { BookOpen, Code, FileText, User, ArrowRight } from 'lucide-react';
 
 export default function Home() {
-  const categories = [
+  // 研究方向
+  const researchAreas = [
     {
-      name: '射频基础',
-      description: 'S参数、史密斯圆图、阻抗匹配等基础理论',
-      icon: Radio,
-      articleCount: 12
+      title: '5G/6G 射频前端设计',
+      description: 'Massive MIMO、毫米波功率放大器、滤波器组',
+      focus: ['大规模天线阵列', '毫米波 PA 线性化', '滤波器集成']
     },
     {
-      name: '5G基站',
-      description: '5G射频前端设计、功率放大器、滤波器',
-      icon: Signal,
-      articleCount: 8
+      title: '高频电路与信号完整性',
+      description: '高速互连、电磁兼容、阻抗匹配',
+      focus: ['差分对设计', '眼图分析', '电源完整性']
     },
     {
-      name: '阻抗匹配',
-      description: '匹配网络设计、调试技巧、实战案例',
-      icon: Settings,
-      articleCount: 15
-    },
-    {
-      name: '高频电路',
-      description: '高频PCB设计、EMC/EMI、信号完整性',
-      icon: Zap,
-      articleCount: 10
+      title: '射频测量与校准',
+      description: '矢量网络分析仪、相位噪声、误差矢量幅度',
+      focus: ['S 参数测量', '误差修正', '自动化测试']
     }
   ];
 
-  const featuredArticles = [
+  // 近期技术札记
+  const technicalNotes = [
     {
-      title: '5G基站PA设计实战：从理论到调试',
-      excerpt: '详解功率放大器的设计流程、关键参数和调试技巧...',
-      category: '5G基站',
-      isPaid: true,
-      price: 99
+      title: 'Wi-Fi 7 射频前端架构演进',
+      excerpt: '探讨 320 MHz 带宽、4096-QAM 调制对射频前端设计的挑战...',
+      date: '2025-01-15',
+      category: '技术解读',
+      readTime: '12 min',
+      isDeep: false
     },
     {
-      title: 'Smith Chart 阻抗匹配完全指南',
-      excerpt: '手把手教你用史密斯圆图设计匹配网络...',
-      category: '阻抗匹配',
-      isPaid: false,
-      price: 0
+      title: '史密斯圆图在阻抗匹配中的深度应用',
+      excerpt: '从基础到高级：多种匹配网络的对比分析与优化策略...',
+      date: '2025-01-10',
+      category: '深度研究',
+      readTime: '25 min',
+      isDeep: true
     },
     {
-      title: '高频PCB设计中的10个常见误区',
-      excerpt: '总结多年实战经验，避免踩坑...',
-      category: '高频电路',
-      isPaid: false,
-      price: 0
+      title: '毫米波功率放大器线性化技术综述',
+      excerpt: '数字预失真 (DPD) 与反馈技术在 28 GHz 频段的实现...',
+      date: '2025-01-05',
+      category: '学术论文',
+      readTime: '18 min',
+      isDeep: true
     }
   ];
 
-  const hotTools = [
+  // 开源资源
+  const openSourceResources = [
     {
-      name: '阻抗匹配计算器',
-      description: '快速设计匹配网络',
-      icon: Settings,
-      href: '/tools/impedance-matching'
+      name: 'rf-calculator',
+      description: 'Python 射频参数计算工具包',
+      type: 'Python Package',
+      link: 'https://github.com/your-repo/rf-calculator'
     },
     {
-      name: 'VSWR/回波损耗转换',
-      description: '参数转换工具',
-      icon: Calculator,
-      href: '/tools/vswr-converter'
+      name: 's-parameter-plotter',
+      description: 'Web-based S 参数可视化工具',
+      type: 'Web Tool',
+      link: '/tools/s-parameter-plotter'
     },
     {
-      name: 'dBm 功率转换',
-      description: '功率单位转换',
-      icon: Zap,
-      href: '/tools/dbm-converter'
+      name: 'impedance-matcher',
+      description: 'Matlab 阻抗匹配网络自动设计',
+      type: 'Matlab Script',
+      link: '/resources/impedance-matcher'
     }
-  ];
-
-  const rfMetrics = [
-    { label: 'n78频段', value: '3300-3800 MHz' },
-    { label: 'S11 < -10dB', value: 'Match OK' },
-    { label: '特征阻抗 Z0', value: '50 Ω' },
-    { label: '光速', value: '≈ 3×10⁸ m/s' },
-    { label: '5G Sub-6GHz', value: 'FR1 频段' }
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-800">
-      {/* 射频专业背景 - SVG 网格线和波形 */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
-        {/* 网格线背景 */}
-        <svg className="absolute inset-0 h-full w-full" style={{ opacity: 0.03 }}>
-          <defs>
-            <pattern
-              id="grid"
-              width="40"
-              height="40"
-              patternUnits="userSpaceOnUse"
-            >
-              <path
-                d="M 40 0 L 0 0 0 40"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1"
-              />
-            </pattern>
-          </defs>
-          <rect
-            width="100%"
-            height="100%"
-            fill="url(#grid)"
-            className="text-slate-900 dark:text-slate-100"
-          />
-        </svg>
-        {/* 波形装饰 */}
-        <svg
-          className="absolute right-0 top-20 h-96 w-96 opacity-5 dark:opacity-3"
-          viewBox="0 0 100 100"
-        >
-          <path
-            d="M0,50 Q25,20 50,50 T100,50"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            className="text-blue-600"
-          />
-          <path
-            d="M0,60 Q25,30 50,60 T100,60"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            className="text-blue-600"
-          />
-        </svg>
-      </div>
-
-      {/* 技术指标滚动条 */}
-      <div className="bg-slate-100/80 backdrop-blur-sm dark:bg-slate-800/80 py-2 overflow-hidden">
-        <div className="flex gap-8 animate-marquee px-4 text-xs text-slate-600 dark:text-slate-400">
-          {rfMetrics.map((metric, index) => (
-            <span key={index} className="whitespace-nowrap">
-              {metric.label}: {metric.value}
-            </span>
-          ))}
-        </div>
-      </div>
-
-      {/* 导航栏 */}
-      <nav className="border-b border-slate-200 bg-white/80 backdrop-blur-sm dark:border-slate-700 dark:bg-slate-900/80">
-        <div className="mx-auto max-w-6xl px-6 py-4">
+    <div className="min-h-screen bg-white dark:bg-slate-950">
+      {/* 导航栏 - 极简学术风格 */}
+      <nav className="border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-950/95">
+        <div className="mx-auto max-w-4xl px-8 py-6">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600 text-xl font-bold text-white">
-                RF
-              </div>
-              <div>
-                <span className="text-lg font-bold text-slate-900 dark:text-white">
-                  射频工程师实战平台
-                </span>
-                <p className="text-xs text-slate-500 dark:text-slate-400">
-                  5G · 阻抗匹配 · 高频电路
-                </p>
-              </div>
+            <div>
+              <Link href="/" className="text-lg font-semibold text-slate-900 dark:text-slate-100 hover:text-slate-700 dark:hover:text-slate-300">
+                RF Research
+              </Link>
+              <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                射频工程技术笔记
+              </p>
             </div>
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-8 text-sm">
               <Link
-                href="/articles"
-                className="text-sm font-medium text-slate-700 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400"
+                href="/notes"
+                className="text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100"
               >
-                知识库
+                Technical Notes
               </Link>
               <Link
-                href="/tools"
-                className="text-sm font-medium text-slate-700 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400"
+                href="/resources"
+                className="text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100"
               >
-                在线工具
+                Resources
               </Link>
               <Link
-                href="/consultation"
-                className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 transition-colors"
+                href="/insights"
+                className="text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100"
               >
-                预约咨询
+                Insights
+              </Link>
+              <Link
+                href="/about"
+                className="text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100"
+              >
+                About
               </Link>
             </div>
           </div>
         </div>
       </nav>
 
-      {/* Hero 区域 */}
-      <section className="py-20">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="text-center">
-            <h1 className="mb-4 text-4xl font-bold text-slate-900 dark:text-white sm:text-5xl">
-              射频工程师的实战成长平台
-            </h1>
-            <p className="mb-8 text-lg text-slate-600 dark:text-slate-300">
-              专注 5G 基站射频通信、阻抗匹配、高频电路设计
-              <br />
-              分享实战经验，解决技术难题
-            </p>
-            <div className="flex justify-center gap-4">
-              <Link
-                href="/articles"
-                className="rounded-lg bg-blue-600 px-8 py-3 text-base font-medium text-white hover:bg-blue-700 transition-colors"
-              >
-                开始学习
-              </Link>
-              <Link
-                href="/tools"
-                className="rounded-lg border border-slate-300 px-8 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 dark:border-slate-600 dark:text-slate-300 dark:hover:bg-slate-800 transition-colors"
-              >
-                在线工具
-              </Link>
-              <Link
-                href="/consultation"
-                className="rounded-lg border border-slate-300 px-8 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 dark:border-slate-600 dark:text-slate-300 dark:hover:bg-slate-800 transition-colors"
-              >
-                技术咨询
-              </Link>
-            </div>
-          </div>
+      {/* 学术格言区域 */}
+      <section className="border-b border-slate-100 dark:border-slate-900 py-20">
+        <div className="mx-auto max-w-3xl px-8 text-center">
+          <blockquote className="mb-6 text-3xl font-light leading-relaxed text-slate-900 dark:text-slate-100 serif">
+            "射频设计不仅是电路计算，更是对电磁波的深度理解与工程智慧的平衡。"
+          </blockquote>
+          <p className="text-sm text-slate-500 dark:text-slate-400">
+            — Research Philosophy
+          </p>
         </div>
       </section>
 
-      {/* 热门工具区域 */}
-      <section className="py-12">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="mb-6 flex items-center justify-between">
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
-              热门工具
-            </h2>
-            <Link
-              href="/tools"
-              className="flex items-center gap-1 text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400"
-            >
-              查看全部
-              <ChevronRight className="h-4 w-4" />
-            </Link>
-          </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {hotTools.map((tool) => (
-              <Link
-                key={tool.name}
-                href={tool.href}
-                className="group flex items-center gap-4 rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md dark:border-slate-700 dark:bg-slate-800"
-              >
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
-                  <tool.icon className="h-6 w-6" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="mb-1 text-base font-semibold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">
-                    {tool.name}
-                  </h3>
-                  <p className="text-sm text-slate-600 dark:text-slate-400">
-                    {tool.description}
-                  </p>
-                </div>
-                <ChevronRight className="h-5 w-5 text-slate-400 transition-transform group-hover:translate-x-1" />
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 分类区域 */}
-      <section className="py-12">
-        <div className="mx-auto max-w-6xl px-6">
-          <h2 className="mb-6 text-2xl font-bold text-slate-900 dark:text-white">
-            技术分类
+      {/* 研究方向 */}
+      <section className="py-16">
+        <div className="mx-auto max-w-4xl px-8">
+          <h2 className="mb-12 text-2xl font-light text-slate-900 dark:text-slate-100">
+            Research Areas
           </h2>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {categories.map((category) => (
-              <Link
-                key={category.name}
-                href={`/articles?category=${category.name}`}
-                className="group rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md dark:border-slate-700 dark:bg-slate-800"
+          <div className="space-y-8">
+            {researchAreas.map((area, index) => (
+              <div
+                key={index}
+                className="border-l-2 border-slate-200 dark:border-slate-800 pl-6 hover:border-slate-400 dark:hover:border-slate-600 transition-colors"
               >
-                <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
-                  <category.icon className="h-6 w-6" />
-                </div>
-                <h3 className="mb-2 text-lg font-semibold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">
-                  {category.name}
+                <h3 className="mb-2 text-lg font-medium text-slate-900 dark:text-slate-100">
+                  {area.title}
                 </h3>
-                <p className="mb-3 text-sm text-slate-600 dark:text-slate-400">
-                  {category.description}
+                <p className="mb-4 text-slate-600 dark:text-slate-400">
+                  {area.description}
                 </p>
-                <p className="text-xs text-slate-500 dark:text-slate-500">
-                  {category.articleCount} 篇文章
-                </p>
-              </Link>
+                <div className="flex flex-wrap gap-2">
+                  {area.focus.map((item, i) => (
+                    <span
+                      key={i}
+                      className="text-xs px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 精选文章 */}
-      <section className="py-12">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="mb-6 flex items-center justify-between">
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
-              精选文章
+      {/* 技术札记 */}
+      <section className="border-t border-slate-100 dark:border-slate-900 py-16">
+        <div className="mx-auto max-w-4xl px-8">
+          <div className="mb-12 flex items-center justify-between">
+            <h2 className="text-2xl font-light text-slate-900 dark:text-slate-100">
+              Technical Notes
             </h2>
             <Link
-              href="/articles"
-              className="flex items-center gap-1 text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400"
+              href="/notes"
+              className="flex items-center gap-1 text-sm text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100"
             >
-              查看全部
-              <ChevronRight className="h-4 w-4" />
+              全部札记
+              <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {featuredArticles.map((article) => (
+
+          <div className="space-y-6">
+            {technicalNotes.map((note, index) => (
               <Link
-                key={article.title}
-                href={`/articles/${encodeURIComponent(article.title)}`}
-                className="group rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md dark:border-slate-700 dark:bg-slate-800"
+                key={index}
+                href={`/notes/${encodeURIComponent(note.title)}`}
+                className="block border-l-2 border-slate-100 dark:border-slate-800 pl-6 hover:border-slate-300 dark:hover:border-slate-700 hover:bg-slate-50/50 dark:hover:bg-slate-900/50 transition-all py-2"
               >
-                <div className="mb-3 flex items-center gap-2">
-                  <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-blue-700 dark:bg-blue-900/30 dark:text-blue-300">
-                    {article.category}
+                <div className="mb-2 flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400">
+                  <span>{note.date}</span>
+                  <span>·</span>
+                  <span className="px-2 py-0.5 bg-slate-100 dark:bg-slate-800">
+                    {note.category}
                   </span>
-                  {article.isPaid && (
-                    <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-medium text-amber-700 dark:bg-amber-900/30 dark:text-amber-300">
-                      付费 ¥{article.price}
-                    </span>
+                  <span>·</span>
+                  <span>{note.readTime}</span>
+                  {note.isDeep && (
+                    <>
+                      <span>·</span>
+                      <span className="text-amber-700 dark:text-amber-400">
+                        深度研读
+                      </span>
+                    </>
                   )}
                 </div>
-                <h3 className="mb-2 text-lg font-semibold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">
-                  {article.title}
+                <h3 className="mb-2 text-lg font-medium text-slate-900 dark:text-slate-100 hover:text-slate-700 dark:hover:text-slate-300">
+                  {note.title}
                 </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400">
-                  {article.excerpt}
+                <p className="text-slate-600 dark:text-slate-400 text-sm">
+                  {note.excerpt}
                 </p>
               </Link>
             ))}
@@ -343,34 +213,97 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 咨询服务 CTA */}
-      <section className="py-12">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 px-8 py-12 text-center">
-            <h2 className="mb-4 text-2xl font-bold text-white">
-              遇到技术难题？预约专家咨询
+      {/* 开源资源 */}
+      <section className="border-t border-slate-100 dark:border-slate-900 py-16">
+        <div className="mx-auto max-w-4xl px-8">
+          <div className="mb-12 flex items-center justify-between">
+            <h2 className="text-2xl font-light text-slate-900 dark:text-slate-100">
+              Open Source Resources
             </h2>
-            <p className="mb-6 text-blue-100">
-              射频设计、阻抗调试、5G基站设计等技术咨询
-              <br />
-              10年+ 实战经验，帮你快速解决问题
-            </p>
             <Link
-              href="/consultation"
-              className="inline-block rounded-lg bg-white px-8 py-3 text-base font-medium text-blue-600 hover:bg-blue-50 transition-colors"
+              href="/resources"
+              className="flex items-center gap-1 text-sm text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100"
             >
-              立即预约
+              更多资源
+              <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            {openSourceResources.map((resource, index) => (
+              <a
+                key={index}
+                href={resource.link}
+                className="border border-slate-200 dark:border-slate-800 p-6 hover:border-slate-300 dark:hover:border-slate-700 transition-colors"
+              >
+                <div className="mb-2 flex items-center gap-2">
+                  <Code className="h-5 w-5 text-slate-600 dark:text-slate-400" />
+                  <span className="text-xs font-medium text-slate-500 dark:text-slate-400">
+                    {resource.type}
+                  </span>
+                </div>
+                <h3 className="mb-2 text-base font-medium text-slate-900 dark:text-slate-100">
+                  {resource.name}
+                </h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400">
+                  {resource.description}
+                </p>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 深度研究订阅 */}
+      <section className="border-t border-slate-100 dark:border-slate-900 py-16">
+        <div className="mx-auto max-w-3xl px-8 text-center">
+          <FileText className="mx-auto mb-6 h-12 w-12 text-slate-400 dark:text-slate-600" />
+          <h2 className="mb-4 text-2xl font-light text-slate-900 dark:text-slate-100">
+            深度研究订阅
+          </h2>
+          <p className="mb-8 text-slate-600 dark:text-slate-400">
+            研究笔记与核心案例的完整版本，仅供深度学习者研读
+          </p>
+          <Link
+            href="/insights"
+            className="inline-flex items-center gap-2 px-6 py-3 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors"
+          >
+            查看研究资料
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
       </section>
 
       {/* 页脚 */}
-      <footer className="border-t border-slate-200 py-8 dark:border-slate-700">
-        <div className="mx-auto max-w-6xl px-6 text-center text-sm text-slate-500 dark:text-slate-400">
-          <p>© 2025 射频工程师实战平台. 专注射频设计与实战经验分享.</p>
+      <footer className="border-t border-slate-200 dark:border-slate-800 py-12">
+        <div className="mx-auto max-w-4xl px-8">
+          <div className="flex flex-col items-center text-center text-sm text-slate-600 dark:text-slate-400">
+            <p className="mb-4">
+              专注射频电路设计、5G/6G 通信、高频电路工程实践
+            </p>
+            <div className="flex items-center gap-6 text-xs">
+              <Link href="/about" className="hover:text-slate-900 dark:hover:text-slate-100">
+                Biography
+              </Link>
+              <Link href="/publications" className="hover:text-slate-900 dark:hover:text-slate-100">
+                Publications
+              </Link>
+              <Link href="/projects" className="hover:text-slate-900 dark:hover:text-slate-100">
+                Projects
+              </Link>
+            </div>
+            <p className="mt-6 text-xs text-slate-500 dark:text-slate-500">
+              © 2025 RF Research. All rights reserved.
+            </p>
+          </div>
         </div>
       </footer>
+
+      <style jsx global>{`
+        .serif {
+          font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+      `}</style>
     </div>
   );
 }

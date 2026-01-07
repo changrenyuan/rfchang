@@ -13,8 +13,29 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "射频工程师实战平台 - 5G基站、阻抗匹配、高频电路",
-  description: "专注射频电路设计、5G基站射频通信、阻抗匹配、高频电路实战经验分享与咨询服务",
+  title: "RF Research | 射频工程技术笔记",
+  description: "专注射频电路设计、5G/6G 通信、高频电路工程研究与实践",
+  manifest: "/manifest.json",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+  ],
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "RF Research",
+  },
+  formatDetection: {
+    telephone: false,
+  },
+  openGraph: {
+    type: "website",
+    locale: "zh_CN",
+    url: "https://rf-research.com",
+    title: "RF Research | 射频工程技术笔记",
+    description: "专注射频电路设计、5G/6G 通信、高频电路工程研究与实践",
+    siteName: "RF Research",
+  },
 };
 
 export default function RootLayout({
