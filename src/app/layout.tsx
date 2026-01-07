@@ -3,7 +3,6 @@ import { Playfair_Display, Inter } from "next/font/google";
 import "@fontsource/jetbrains-mono/index.css";
 import "katex/dist/katex.min.css";
 import "./globals.css";
-import { siteConfig } from "@/data/siteConfig";
 
 // 学术级字体系统
 const playfairDisplay = Playfair_Display({
@@ -21,16 +20,16 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.url),
+  metadataBase: new URL("https://rf-research.com"),
   title: {
-    default: `${siteConfig.name} | RF Engineering Lab`,
-    template: `%s | ${siteConfig.name}`
+    default: "常人元 - 射频工程专家 | RF Engineering Lab",
+    template: "%s | 常人元射频研究"
   },
-  description: siteConfig.seo.defaultDescription,
-  keywords: siteConfig.seo.keywords as unknown as string[],
-  authors: [{ name: siteConfig.author, url: siteConfig.url }],
-  creator: siteConfig.author,
-  publisher: siteConfig.name,
+  description: "常人元 - 射频工程专家，专注射频电路设计、5G/6G 通信、高频电路工程研究与实践。提供射频 PA 线性化技术、毫米波链路预算、阻抗匹配等专业解决方案。",
+  keywords: ["常人元", "射频工程", "RF Engineering", "5G", "6G", "毫米波", "射频PA线性化", "阻抗匹配", "链路预算", "高频电路"],
+  authors: [{ name: "常人元", url: "https://rf-research.com" }],
+  creator: "常人元",
+  publisher: "RF Engineering Lab",
   robots: {
     index: true,
     follow: true,
@@ -43,41 +42,46 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: siteConfig.url,
+    canonical: "https://rf-research.com",
     languages: {
-      "zh-CN": siteConfig.url,
+      "zh-CN": "https://rf-research.com",
     },
   },
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: siteConfig.name,
+    title: "RF Research",
   },
   formatDetection: {
     telephone: false,
   },
   openGraph: {
-    ...siteConfig.seo.openGraph,
-    url: siteConfig.url,
-    title: `${siteConfig.name} | RF Engineering Lab`,
-    description: siteConfig.seo.defaultDescription,
-    siteName: siteConfig.name,
+    type: "website",
+    locale: "zh_CN",
+    url: "https://rf-research.com",
+    title: "常人元 - 射频工程专家 | RF Engineering Lab",
+    description: "常人元 - 射频工程专家，专注射频电路设计、5G/6G 通信、高频电路工程研究与实践",
+    siteName: "RF Research",
     images: [
       {
         url: "/og",
         width: 1200,
         height: 630,
-        alt: siteConfig.name,
+        alt: "常人元 - 射频工程专家",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.name} | RF Engineering Lab`,
-    description: siteConfig.seo.defaultDescription,
+    title: "常人元 - 射频工程专家 | RF Engineering Lab",
+    description: "常人元 - 射频工程专家，专注射频电路设计、5G/6G 通信、高频电路工程研究与实践",
     images: ["/og"],
-    creator: siteConfig.author,
+    creator: "@changry",
+  },
+  verification: {
+    google: "google-site-verification-token",
+    yandex: "yandex-verification-token",
   },
 };
 
