@@ -1,8 +1,14 @@
 import PublicationsWall from '@/components/PublicationsWall';
+import { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Publications | RF Research',
-  description: '射频工程学术论文与研究成果',
+export const metadata: Metadata = {
+  title: '学术论文 | Publications | 常人元射频研究',
+  description: '常人元在射频工程领域的学术论文和研究成果，涵盖 5G/6G 通信、毫米波功率放大器、线性化技术等方向。发表在 IEEE Transactions、Nature Communications 等顶级期刊。',
+  keywords: ['常人元论文', '射频论文', 'Publications', '学术论文', 'IEEE', '毫米波', '线性化技术'],
+  openGraph: {
+    title: '学术论文 | Publications | 常人元射频研究',
+    description: '常人元在射频工程领域的学术论文和研究成果',
+  },
 };
 
 export default function PublicationsPage() {

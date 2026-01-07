@@ -1,9 +1,16 @@
 import Link from 'next/link';
 import { BookOpen, Code, FileText, User, ArrowRight, Activity, TrendingUp, Shield } from 'lucide-react';
+import { Metadata } from 'next';
 
-export const metadata = {
-  title: 'RF Research | 射频工程技术笔记',
-  description: '专注射频电路设计、5G/6G 通信、高频电路工程研究与实践',
+export const metadata: Metadata = {
+  title: '常人元 - 射频工程专家 | RF Engineering Lab',
+  description: '常人元 - 射频工程专家，专注射频电路设计、5G/6G 通信、高频电路工程研究与实践。研究方向包括大规模天线阵列、毫米波 PA 线性化、阻抗匹配网络设计等。',
+  keywords: ['常人元', '射频工程', 'RF Engineering', '5G', '6G', '毫米波', '射频PA线性化', '阻抗匹配', '链路预算'],
+  openGraph: {
+    title: '常人元 - 射频工程专家 | RF Engineering Lab',
+    description: '专注射频电路设计、5G/6G 通信、高频电路工程研究与实践',
+    type: 'website',
+  },
 };
 
 export default function Home() {
@@ -111,8 +118,51 @@ export default function Home() {
     { label: '工程案例', value: '25', unit: '个' },
   ];
 
+  // JSON-LD 结构化数据 - Person + Expert
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "常人元",
+    "givenName": "人元",
+    "familyName": "常",
+    "jobTitle": "射频工程专家",
+    "description": "专注射频电路设计、5G/6G 通信、高频电路工程研究与实践",
+    "url": "https://rf-research.com",
+    "sameAs": [
+      "https://github.com/changrenyuan",
+      "https://www.linkedin.com/in/changry",
+      "https://scholar.google.com/citations?user=changry"
+    ],
+    "knowsAbout": [
+      "射频工程",
+      "RF Engineering",
+      "5G通信",
+      "6G通信",
+      "毫米波",
+      "Massive MIMO",
+      "功率放大器",
+      "阻抗匹配",
+      "S参数",
+      "线性化技术"
+    ],
+    "worksFor": {
+      "@type": "Organization",
+      "name": "RF Engineering Lab"
+    },
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "电子科技大学"
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[var(--bg-primary)]">
+      {/* JSON-LD 结构化数据 */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       {/* 导航栏 - 极简学术风格 */}
       <nav className="border-b border-thin bg-[var(--bg-secondary)]">
         <div className="mx-auto max-w-6xl px-8 py-4">
