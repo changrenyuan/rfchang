@@ -4,8 +4,24 @@ import path from 'path';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import rehypeKatex from 'rehype-katex';
 import remarkMath from 'remark-math';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
-import Link from 'next/link';
+import { DocNavigation } from '@/components/DocNavigation';
+
+// MDX 组件
+const components = {
+  pre: ({ children }: { children: React.ReactNode }) => (
+    <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded overflow-x-auto">
+      {children}
+    </div>
+  ),
+  code: ({ className, children, ...props }: any) => {
+    const language = className?.replace('language-', '') || '';
+    return (
+      <code className={className} {...props}>
+        {children}
+      </code>
+    );
+  },
+};
 
 export async function generateStaticParams() {
   const contentDir = path.join(process.cwd(), 'content', 'knowledge');
@@ -71,57 +87,61 @@ export default async function KnowledgePage({ params }: { params: { slug: string
     const content = fileContent.replace(/^---\n[\s\S]*?\n---\n/, '');
 
     return (
-      <article className="prose prose-sm max-w-none">
-        <div className="mb-8 pb-8 border-b border-[var(--border-color)]">
-          <div className="mb-4">
-            <span className="text-sm px-2 py-1 bg-[var(--bg-tertiary)] text-[var(--text-secondary)] rounded">
-              {frontMatter.category}
-            </span>
+      <>
+        <article className="prose prose-sm max-w-none">
+          {/* 文章头部 */}
+          <div className="mb-8 pb-8 border-b border-[var(--border-color)]">
+            <div className="mb-4">
+              <span className="text-sm px-3 py-1 bg-[var(--color-primary-light)] text-[var(--color-primary)] rounded font-medium">
+                {frontMatter.category}
+              </span>
+            </div>
+
+            <h1 className="text-3xl font-serif font-semibold text-[var(--text-primary)] mb-4 leading-tight">
+              {frontMatter.title}
+            </h1>
+
+            <div className="flex flex-wrap items-center gap-4 text-sm text-[var(--text-tertiary)]">
+              {frontMatter.author && <span>{frontMatter.author}</span>}
+              {frontMatter.date && (
+                <>
+                  <span className="text-[var(--border-color)]">·</span>
+                  <span>{frontMatter.date}</span>
+                </>
+              )}
+              {frontMatter.readTime && (
+                <>
+                  <span className="text-[var(--border-color)]">·</span>
+                  <span>{frontMatter.readTime}</span>
+                </>
+              )}
+            </div>
+
+            {frontMatter.description && (
+              <p className="mt-4 text-base text-[var(--text-secondary)] leading-relaxed">
+                {frontMatter.description}
+              </p>
+            )}
           </div>
 
-          <h1 className="text-3xl font-serif font-semibold text-[var(--text-primary)] mb-4">
-            {frontMatter.title}
-          </h1>
-
-          <div className="flex items-center gap-4 text-sm text-[var(--text-tertiary)]">
-            <span>{frontMatter.author}</span>
-            <span>·</span>
-            <span>{frontMatter.date}</span>
-            <span>·</span>
-            <span>{frontMatter.readTime}</span>
+          {/* 文章内容 */}
+          <div className="min-h-[500px] prose-content">
+            <MDXRemote
+              source={content}
+              components={components}
+              options={{
+                mdxOptions: {
+                  remarkPlugins: [remarkMath],
+                  rehypePlugins: [rehypeKatex],
+                },
+              }}
+            />
           </div>
+        </article>
 
-          {frontMatter.description && (
-            <p className="mt-4 text-base text-[var(--text-secondary)]">
-              {frontMatter.description}
-            </p>
-          )}
-        </div>
-
-        <div className="min-h-[500px]">
-          <MDXRemote
-            source={content}
-            options={{
-              mdxOptions: {
-                remarkPlugins: [remarkMath],
-                rehypePlugins: [rehypeKatex],
-              },
-            }}
-          />
-        </div>
-
-        <div className="mt-12 pt-8 border-t border-[var(--border-color)]">
-          <div className="flex justify-between items-center">
-            <Link
-              href="/knowledge"
-              className="flex items-center gap-2 text-sm text-[var(--color-primary)] hover:text-[var(--color-primary-hover)] transition-colors"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              返回知识库
-            </Link>
-          </div>
-        </div>
-      </article>
+        {/* 文档导航 */}
+        <DocNavigation currentPath={slug.join('/')} />
+      </>
     );
   } catch (error) {
     notFound();

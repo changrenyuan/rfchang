@@ -1,7 +1,9 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { Search } from 'lucide-react';
+import { Search, FileText } from 'lucide-react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export function SearchBar() {
   const [showSearch, setShowSearch] = useState(false);
@@ -9,6 +11,7 @@ export function SearchBar() {
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
 
   const handleSearch = async (query: string) => {
     if (!query.trim()) {
@@ -49,61 +52,114 @@ export function SearchBar() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      setShowSearch(false);
+      setSearchQuery('');
+      setSearchResults([]);
+    }
+  };
+
   return (
     <div ref={searchRef} className="relative">
       <button
         onClick={() => setShowSearch(!showSearch)}
         className="p-2 hover:bg-[var(--bg-tertiary)] rounded transition-colors"
+        aria-label="搜索"
       >
         <Search className="h-5 w-5 text-[var(--text-secondary)]" />
       </button>
 
       {showSearch && (
-        <div className="absolute right-0 top-12 w-80 bg-[var(--bg-secondary)] py-2">
-          <input
-            type="text"
-            placeholder="搜索文章内容..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            autoFocus
-            className="w-full px-4 py-2 text-sm border-b border-[var(--border-color)] focus:outline-none"
-          />
+        <div className="fixed inset-0 z-50 bg-black/50" onClick={() => setShowSearch(false)}>
+          <div
+            className="absolute right-0 top-16 w-full max-w-2xl bg-[var(--bg-secondary)] shadow-xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* 搜索输入框 */}
+            <div className="sticky top-0 bg-[var(--bg-secondary)] border-b border-[var(--border-color)] p-4">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-[var(--text-tertiary)]" />
+                <input
+                  type="text"
+                  placeholder="搜索文章标题、内容..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  autoFocus
+                  className="w-full pl-10 pr-4 py-3 bg-[var(--bg-tertiary)] border border-[var(--border-color)] rounded-lg text-[var(--text-primary)] focus:outline-none focus:border-[var(--color-primary)] transition-colors"
+                />
+              </div>
+              <div className="mt-2 text-xs text-[var(--text-tertiary)]">
+                按 <kbd className="px-1.5 py-0.5 bg-[var(--bg-primary)] rounded">ESC</kbd> 关闭搜索
+              </div>
+            </div>
 
-          {searchQuery && (
-            <div className="max-h-96 overflow-y-auto">
+            {/* 搜索结果 */}
+            <div className="max-h-[60vh] overflow-y-auto">
               {isSearching ? (
-                <div className="px-4 py-3 text-sm text-[var(--text-tertiary)]">
+                <div className="flex items-center justify-center py-12 text-[var(--text-tertiary)]">
                   搜索中...
                 </div>
               ) : searchResults.length > 0 ? (
-                searchResults.map((article) => (
-                  <a
-                    key={article.id}
-                    href={`/articles/${article.slug}`}
-                    className="block px-4 py-3 hover:bg-[var(--bg-tertiary)] transition-colors"
-                    onClick={() => {
-                      setShowSearch(false);
-                      setSearchQuery('');
-                    }}
-                  >
-                    <div className="text-sm font-medium text-[var(--text-primary)] mb-1">
-                      {article.title}
-                    </div>
-                    <div className="text-xs text-[var(--text-tertiary)] mb-1">
-                      {article.category} · {article.readTime}
-                    </div>
-                    <div className="text-xs text-[var(--text-secondary)] line-clamp-2">
-                      {article.excerpt}
-                    </div>
-                  </a>
-                ))
+                <div className="divide-y divide-[var(--border-color)]">
+                  {searchResults.map((article) => (
+                    <Link
+                      key={article.id}
+                      href={article.path}
+                      className="block px-6 py-4 hover:bg-[var(--bg-tertiary)] transition-colors"
+                      onClick={() => {
+                        setShowSearch(false);
+                        setSearchQuery('');
+                        setSearchResults([]);
+                      }}
+                    >
+                      <div className="flex items-start gap-3">
+                        <div className="flex-shrink-0 mt-0.5">
+                          <FileText className="h-5 w-5 text-[var(--text-tertiary)]" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="text-sm font-medium text-[var(--text-primary)] mb-1">
+                            {article.title}
+                          </div>
+                          <div className="flex items-center gap-2 mb-2 text-xs text-[var(--text-tertiary)]">
+                            <span className="px-2 py-0.5 bg-[var(--color-primary-light)] text-[var(--color-primary)] rounded">
+                              {article.category}
+                            </span>
+                            {article.readTime && <span>· {article.readTime}</span>}
+                          </div>
+                          {article.excerpt && (
+                            <div className="text-xs text-[var(--text-secondary)] line-clamp-2">
+                              {article.excerpt}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              ) : searchQuery ? (
+                <div className="flex flex-col items-center justify-center py-12 text-[var(--text-tertiary)]">
+                  <Search className="h-12 w-12 mb-4 text-[var(--text-tertiary)] opacity-50" />
+                  <p>未找到相关文章</p>
+                  <p className="text-sm mt-2">试试其他关键词</p>
+                </div>
               ) : (
-                <div className="px-4 py-3 text-sm text-[var(--text-tertiary)]">
-                  未找到相关文章
+                <div className="flex flex-col items-center justify-center py-12 text-[var(--text-tertiary)]">
+                  <Search className="h-12 w-12 mb-4 text-[var(--text-tertiary)] opacity-50" />
+                  <p>输入关键词开始搜索</p>
+                  <p className="text-sm mt-2">支持搜索文章标题和内容</p>
                 </div>
               )}
             </div>
-          )}
+
+            {/* 搜索统计 */}
+            {searchResults.length > 0 && (
+              <div className="sticky bottom-0 bg-[var(--bg-secondary)] border-t border-[var(--border-color)] px-6 py-3 text-xs text-[var(--text-tertiary)]">
+                找到 {searchResults.length} 篇文章
+              </div>
+            )}
+          </div>
         </div>
       )}
     </div>
