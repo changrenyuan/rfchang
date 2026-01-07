@@ -253,10 +253,11 @@ export default function Home() {
               return (
                 <div
                   key={index}
-                  className="border-thin bg-[var(--bg-secondary)] p-6 hover:border-[var(--border-color-dark)] transition-colors"
+                  className="border-thin bg-[var(--bg-secondary)] p-4 hover:border-[var(--border-color-dark)] transition-colors"
                 >
-                  <div className="mb-4">
-                    <Icon className="h-6 w-6 text-[var(--color-primary)]" />
+                  <div className="mb-4 flex justify-between items-start">
+                    <span className="font-mono text-[10px] opacity-50">#0{index + 1}</span>
+                    <Icon className="h-4 w-4" />
                   </div>
 
                   <h3 className="mb-2 text-lg font-serif font-medium text-[var(--text-primary)]">
@@ -318,6 +319,8 @@ export default function Home() {
                 className="block border-l-thin pl-4 py-3 hover:bg-[var(--bg-tertiary)] transition-colors"
               >
                 <div className="mb-2 flex items-center gap-3 text-xs text-[var(--text-tertiary)]">
+                  <span className="font-mono text-[10px] opacity-50">#{String(index + 1).padStart(2, '0')}</span>
+                  <span className="font-mono">{note.date}</span>
                   <span className="font-mono">{note.date}</span>
                   <span>·</span>
                   <span className="px-2 py-0.5 bg-[var(--bg-tertiary)] text-[var(--text-secondary)]">

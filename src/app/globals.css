@@ -81,6 +81,9 @@ html {
 
 body {
   background-color: var(--bg-primary);
+  /* 增加极淡的点阵底纹，模拟坐标纸，消除死白感 */
+  background-image: radial-gradient(var(--border-color) 0.8px, transparent 0.8px);
+  background-size: 24px 24px;
   color: var(--text-primary);
   font-family: var(--font-sans);
   font-size: 1rem;
@@ -161,9 +164,10 @@ code, pre, .code {
    工业风格边框 Industrial Border System
    ======================================== */
 
-/* 1px 细线边框 */
+/* 1px 细线边框 - 加粗线条，让它像仪器外壳一样扎实 */
 .border-thin {
-  border: var(--border-width) solid var(--border-color);
+  border: 1px solid var(--text-primary);
+  border-width: 1px;
 }
 
 .border-thin-light {
@@ -278,6 +282,8 @@ code, pre, .code {
 
 * {
   box-shadow: none !important;
+  /* 所有的边框不要圆角，要直角，才够硬核 */
+  border-radius: 0 !important;
 }
 
 /* 如需层次感，使用边框或背景色差异 */
