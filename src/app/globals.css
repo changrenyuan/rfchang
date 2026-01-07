@@ -5,27 +5,27 @@
    ======================================== */
 
 :root {
-  /* 背景色 Background Colors */
-  --bg-primary: #FAFAFA;
+  /* 背景色 Background Colors - 米白色系 */
+  --bg-primary: #FFFEFA;
   --bg-secondary: #FFFFFF;
-  --bg-tertiary: #F8F9FA;
-  --bg-code: #F1F5F9;
+  --bg-tertiary: #FDFDF9;
+  --bg-code: #F5F4EF;
 
   /* 文字颜色 Text Colors */
-  --text-primary: #0F172A;
-  --text-secondary: #475569;
-  --text-tertiary: #94A3B8;
-  --text-code: #0F172A;
+  --text-primary: #1F2937;
+  --text-secondary: #6B7280;
+  --text-tertiary: #9CA3AF;
+  --text-code: #1F2937;
 
-  /* 主色调 Primary Colors (深海军蓝/冷灰) */
-  --color-primary: #1A2A6C;
-  --color-primary-hover: #243885;
-  --color-primary-light: #E8EDF7;
+  /* 主色调 Primary Colors (柔和学术蓝) */
+  --color-primary: #3B5998;
+  --color-primary-hover: #2D4373;
+  --color-primary-light: #F0F4F9;
 
-  /* 边框颜色 Border Colors (1px细线) */
-  --border-color: #E2E8F0;
-  --border-color-light: #F1F5F9;
-  --border-color-dark: #94A3B8;
+  /* 边框颜色 Border Colors (虚线风格) */
+  --border-color: #D4D4D8;
+  --border-color-light: #E5E5E5;
+  --border-color-dark: #A1A1AA;
 
   /* 字体系统 Typography System */
   --font-serif: var(--font-playfair-display);
@@ -80,10 +80,8 @@ html {
 }
 
 body {
-  background-color: var(--bg-primary);
-  /* 增加极淡的点阵底纹，模拟坐标纸，消除死白感 */
-  background-image: radial-gradient(var(--border-color) 0.8px, transparent 0.8px);
-  background-size: 24px 24px;
+  /* 纯米白背景 - 高档打印纸颜色 */
+  background-color: #FFFEFA;
   color: var(--text-primary);
   font-family: var(--font-sans);
   font-size: 1rem;
@@ -164,10 +162,15 @@ code, pre, .code {
    工业风格边框 Industrial Border System
    ======================================== */
 
-/* 1px 细线边框 - 加粗线条，让它像仪器外壳一样扎实 */
+/* 1px 细线边框 - 改为浅色虚线，像工程草稿纸 */
 .border-thin {
-  border: 1px solid var(--text-primary);
+  border: 1px dashed #D4D4D8;
   border-width: 1px;
+}
+
+/* 虚线分割线 - 用于 Section 之间 */
+.border-dashed-soft {
+  border-top: 1px dashed #E5E5E5;
 }
 
 .border-thin-light {
@@ -457,25 +460,25 @@ section:last-child {
   transition: all 0.15s ease;
 }
 
-/* 深色模式 Dark Mode */
+/* 深色模式 Dark Mode - 保留米白底，仅微调文字 */
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg-primary: #0A0A0B;
-    --bg-secondary: #141417;
-    --bg-tertiary: #1C1C21;
-    --bg-code: #1E1E24;
+    --bg-primary: #FFFEFA;
+    --bg-secondary: #FFFFFF;
+    --bg-tertiary: #FDFDF9;
+    --bg-code: #F5F4EF;
 
-    --text-primary: #F1F5F9;
-    --text-secondary: #A1A1AA;
-    --text-tertiary: #71717A;
-    --text-code: #F1F5F9;
+    --text-primary: #1F2937;
+    --text-secondary: #6B7280;
+    --text-tertiary: #9CA3AF;
+    --text-code: #1F2937;
 
-    --border-color: #27272A;
-    --border-color-light: #27272A;
-    --border-color-dark: #52525B;
+    --border-color: #D4D4D8;
+    --border-color-light: #E5E5E5;
+    --border-color-dark: #A1A1AA;
 
-    --color-primary: #3B82F6;
-    --color-primary-hover: #60A5FA;
-    --color-primary-light: #1E3A5F;
+    --color-primary: #3B5998;
+    --color-primary-hover: #2D4373;
+    --color-primary-light: #F0F4F9;
   }
 }

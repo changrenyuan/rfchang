@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { BookOpen, Code, FileText, User, ArrowRight, Activity, TrendingUp, Shield } from 'lucide-react';
 import { Metadata } from 'next';
+import KnowledgeBlock from '@/components/KnowledgeBlock';
 
 export const metadata: Metadata = {
   title: '常人元 - 射频工程专家 | RF Engineering Lab',
@@ -14,10 +14,10 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  // 研究方向
+  // 研究方向 - 使用数学符号替代图标
   const researchAreas = [
     {
-      icon: Activity,
+      symbol: 'λ',
       title: '5G/6G 射频前端设计',
       description: 'Massive MIMO、毫米波功率放大器、滤波器组',
       metrics: [
@@ -26,9 +26,10 @@ export default function Home() {
         { label: '技术深度', value: 'Advanced' },
       ],
       focus: ['大规模天线阵列', '毫米波 PA 线性化', '滤波器集成'],
+      constant: 'c = 299792458 m/s',
     },
     {
-      icon: TrendingUp,
+      symbol: 'Γ',
       title: '高频电路与信号完整性',
       description: '高速互连、电磁兼容、阻抗匹配',
       metrics: [
@@ -37,9 +38,10 @@ export default function Home() {
         { label: '验证周期', value: '< 2 weeks' },
       ],
       focus: ['差分对设计', '眼图分析', '电源完整性'],
+      constant: 'ε₀ = 8.854 × 10⁻¹² F/m',
     },
     {
-      icon: Shield,
+      symbol: 'Ω',
       title: '射频测量与校准',
       description: '矢量网络分析仪、相位噪声、误差矢量幅度',
       metrics: [
@@ -48,12 +50,14 @@ export default function Home() {
         { label: '准确度', value: '±0.5 dB' },
       ],
       focus: ['S 参数测量', '误差修正', '自动化测试'],
+      constant: 'Z₀ = 50 Ω',
     },
   ];
 
   // 近期技术札记
   const technicalNotes = [
     {
+      id: 'Art_001',
       title: 'Wi-Fi 7 射频前端架构演进',
       excerpt: '探讨 320 MHz 带宽、4096-QAM 调制对射频前端设计的挑战，分析频段干扰抑制方案与射频前端集成策略。',
       date: '2025-01-15',
@@ -63,6 +67,7 @@ export default function Home() {
       tags: ['Wi-Fi 7', '前端架构', '频段干扰'],
     },
     {
+      id: 'Art_002',
       title: '史密斯圆图在阻抗匹配中的深度应用',
       excerpt: '从基础到高级：多种匹配网络的对比分析与优化策略，涵盖 L 型、T 型、π 型匹配网络的适用场景与设计方法。',
       date: '2025-01-10',
@@ -72,6 +77,7 @@ export default function Home() {
       tags: ['史密斯圆图', '阻抗匹配', '优化策略'],
     },
     {
+      id: 'Art_003',
       title: '毫米波功率放大器线性化技术综述',
       excerpt: '数字预失真 (DPD) 与反馈技术在 28 GHz 频段的实现，分析线性化性能与效率权衡关系。',
       date: '2025-01-05',
@@ -79,34 +85,6 @@ export default function Home() {
       readTime: '18 min',
       isDeep: true,
       tags: ['毫米波', 'PA', '线性化', 'DPD'],
-    },
-  ];
-
-  // 开源资源
-  const openSourceResources = [
-    {
-      name: 'rf-calculator',
-      description: 'Python 射频参数计算工具包，包含 S 参数、驻波比、回波损耗等常用计算模块',
-      type: 'Python Package',
-      language: 'Python',
-      stars: 234,
-      link: 'https://github.com/changrenyuan/rf-calculator',
-    },
-    {
-      name: 's-parameter-plotter',
-      description: 'Web-based S 参数可视化工具，支持 Touchstone 文件格式导入与矢量网络分析',
-      type: 'Web Tool',
-      language: 'TypeScript',
-      stars: 189,
-      link: '/tools/s-parameter-plotter',
-    },
-    {
-      name: 'impedance-matcher',
-      description: 'Matlab 阻抗匹配网络自动设计工具，支持多级匹配网络优化与 parasitic 参数补偿',
-      type: 'Matlab Script',
-      language: 'Matlab',
-      stars: 156,
-      link: 'https://github.com/changrenyuan/impedance-matcher',
     },
   ];
 
@@ -156,47 +134,47 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--bg-primary)]">
+    <div className="min-h-screen">
       {/* JSON-LD 结构化数据 */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* 导航栏 - 极简学术风格 */}
-      <nav className="border-b border-thin bg-[var(--bg-secondary)]">
-        <div className="main-container">
+      {/* 导航栏 - 极简手稿风格 */}
+      <nav className="border-t border-dashed" style={{ borderColor: '#E5E5E5', padding: 'var(--space-4) 0' }}>
+        <div className="content-container">
           <div className="flex items-center justify-between">
             <div>
-              <Link href="/" className="text-xl font-serif font-semibold text-[var(--text-primary)]">
+              <Link href="/" className="font-serif font-medium" style={{ fontSize: '1.125rem', color: 'var(--text-primary)' }}>
                 RF Research
               </Link>
-              <p className="mt-0.5 text-xs text-[var(--text-tertiary)]">
+              <p className="mt-0.5" style={{ fontSize: '0.625rem', color: 'var(--text-tertiary)' }}>
                 射频工程技术笔记
               </p>
             </div>
-            <div className="flex items-center gap-8 text-sm">
+            <div className="flex items-center gap-6 text-sm">
               <Link
                 href="/notes"
-                className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+                style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}
               >
                 Notes
               </Link>
               <Link
                 href="/publications"
-                className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+                style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}
               >
                 Publications
               </Link>
               <Link
                 href="/tools"
-                className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+                style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}
               >
                 Tools
               </Link>
               <Link
                 href="/about"
-                className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+                style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}
               >
                 About
               </Link>
@@ -205,339 +183,155 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Hero 区域 - 学术格言与统计数据 */}
-      <section className="border-b border-thin py-16">
-        <div className="content-container">
-          <blockquote className="mb-12 text-3xl font-serif font-light leading-relaxed text-[var(--text-primary)]">
-            "射频设计不仅是电路计算，更是对电磁波的深度理解与工程智慧的平衡。"
-          </blockquote>
+      {/* Hero 区域 - 学术格言 */}
+      <KnowledgeBlock
+        title="Research Philosophy"
+        subtitle="研究理念"
+      >
+        <blockquote className="font-serif font-light" style={{ fontSize: '1.5rem', lineHeight: 1.6, color: 'var(--text-primary)', marginBottom: 'var(--space-8)' }}>
+          "射频设计不仅是电路计算，更是对电磁波的深度理解与工程智慧的平衡。"
+        </blockquote>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {stats.map((stat, index) => (
-              <div
-                key={index}
-                className="border-thin bg-[var(--bg-secondary)] p-4"
-              >
-                <div className="text-2xl font-mono font-semibold text-[var(--color-primary)]">
-                  {stat.value}
-                  <span className="text-sm text-[var(--text-tertiary)] ml-1">{stat.unit}</span>
-                </div>
-                <div className="mt-1 text-xs text-[var(--text-tertiary)]">
-                  {stat.label}
-                </div>
+        <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: 'var(--space-4)' }}>
+          {stats.map((stat, index) => (
+            <div key={index}>
+              <div className="font-mono font-semibold" style={{ fontSize: '1.5rem', color: 'var(--color-primary)' }}>
+                {stat.value}
+                <span className="text-sm" style={{ color: 'var(--text-tertiary)', marginLeft: '2px' }}>{stat.unit}</span>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 研究方向 - 带指标数据 */}
-      <section className="py-16">
-        <div className="main-container">
-          <div className="mb-8 flex items-center justify-between">
-            <h2 className="text-2xl font-serif font-light text-[var(--text-primary)]">
-              Research Areas
-            </h2>
-            <Link
-              href="/about"
-              className="flex items-center gap-1 text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
-            >
-              查看详情
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-3">
-            {researchAreas.map((area, index) => {
-              const Icon = area.icon;
-              return (
-                <div
-                  key={index}
-                  className="border-thin bg-[var(--bg-secondary)] p-4 hover:border-[var(--border-color-dark)] transition-colors"
-                >
-                  <div className="mb-4 flex justify-between items-start">
-                    <span className="font-mono text-[10px] opacity-50">#0{index + 1}</span>
-                    <Icon className="h-4 w-4" />
-                  </div>
-
-                  <h3 className="mb-2 text-lg font-serif font-medium text-[var(--text-primary)]">
-                    {area.title}
-                  </h3>
-
-                  <p className="mb-4 text-sm text-[var(--text-secondary)]">
-                    {area.description}
-                  </p>
-
-                  {/* 指标数据 */}
-                  <div className="mb-4 grid grid-cols-3 gap-2 text-xs">
-                    {area.metrics.map((metric, i) => (
-                      <div key={i} className="border-thin p-2">
-                        <div className="font-mono text-[var(--color-primary)]">{metric.value}</div>
-                        <div className="text-[var(--text-tertiary)]">{metric.label}</div>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="flex flex-wrap gap-1">
-                    {area.focus.map((item, i) => (
-                      <span
-                        key={i}
-                        className="px-2 py-1 text-xs bg-[var(--bg-tertiary)] text-[var(--text-secondary)] rounded-industrial-sm"
-                      >
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* 技术札记 - 增强信息密度 */}
-      <section className="border-t border-thin py-16">
-        <div className="content-container">
-          <div className="mb-8 flex items-center justify-between">
-            <h2 className="text-2xl font-serif font-light text-[var(--text-primary)]">
-              Recent Technical Notes
-            </h2>
-            <Link
-              href="/notes"
-              className="flex items-center gap-1 text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
-            >
-              全部札记 ({technicalNotes.length})
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-
-          <div className="space-y-4">
-            {technicalNotes.map((note, index) => (
-              <Link
-                key={index}
-                href={`/notes/${encodeURIComponent(note.title)}`}
-                className="block border-l-thin pl-4 py-3 hover:bg-[var(--bg-tertiary)] transition-colors"
-              >
-                <div className="mb-2 flex items-center gap-3 text-xs text-[var(--text-tertiary)]">
-                  <span className="font-mono text-[10px] opacity-50">#{String(index + 1).padStart(2, '0')}</span>
-                  <span className="font-mono">{note.date}</span>
-                  <span className="font-mono">{note.date}</span>
-                  <span>·</span>
-                  <span className="px-2 py-0.5 bg-[var(--bg-tertiary)] text-[var(--text-secondary)]">
-                    {note.category}
-                  </span>
-                  <span>·</span>
-                  <span>{note.readTime}</span>
-                  {note.isDeep && (
-                    <>
-                      <span>·</span>
-                      <span className="text-[var(--color-primary)] font-medium">
-                        深度研读
-                      </span>
-                    </>
-                  )}
-                </div>
-
-                <h3 className="mb-2 text-lg font-serif font-medium text-[var(--text-primary)] hover:text-[var(--color-primary)] transition-colors">
-                  {note.title}
-                </h3>
-
-                <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-                  {note.excerpt}
-                </p>
-
-                <div className="mt-2 flex flex-wrap gap-1">
-                  {note.tags.map((tag, i) => (
-                    <span
-                      key={i}
-                      className="px-2 py-0.5 text-xs bg-[var(--bg-code)] text-[var(--text-tertiary)] rounded-industrial-sm font-mono"
-                    >
-                      #{tag}
-                    </span>
-                  ))}
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 开源资源 - 统一列表风格 */}
-      <section className="border-t border-thin py-16">
-        <div className="main-container">
-          <div className="mb-8 flex items-center justify-between">
-            <h2 className="text-2xl font-serif font-light text-[var(--text-primary)]">
-              Open Source Resources
-            </h2>
-            <Link
-              href="https://github.com/changrenyuan"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1 text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
-            >
-              GitHub
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {openSourceResources.map((resource, index) => (
-              <a
-                key={index}
-                href={resource.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="border-thin bg-[var(--bg-secondary)] p-5 hover:border-[var(--border-color-dark)] transition-colors group"
-              >
-                <div className="mb-3 flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Code className="h-5 w-5 text-[var(--color-primary)]" />
-                    <span className="text-xs font-mono text-[var(--text-tertiary)]">
-                      {resource.language}
-                    </span>
-                  </div>
-                  <span className="text-xs font-mono text-[var(--text-tertiary)]">
-                    {resource.type}
-                  </span>
-                </div>
-
-                <h3 className="mb-2 text-base font-serif font-medium text-[var(--text-primary)] group-hover:text-[var(--color-primary)] transition-colors">
-                  {resource.name}
-                </h3>
-
-                <p className="mb-3 text-sm text-[var(--text-secondary)] leading-relaxed">
-                  {resource.description}
-                </p>
-
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-1 text-xs text-[var(--text-tertiary)]">
-                    <Activity className="h-3 w-3" />
-                    <span className="font-mono">{resource.stars}</span>
-                  </div>
-                  <div className="text-xs text-[var(--color-primary)]">
-                    View →
-                  </div>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 深度研究订阅 */}
-      <section className="border-t border-thin py-16">
-        <div className="mx-auto max-w-3xl px-8">
-          <div className="border-thin bg-[var(--bg-secondary)] p-8">
-            <div className="mb-6 flex justify-center">
-              <FileText className="h-12 w-12 text-[var(--color-primary)]" />
-            </div>
-
-            <h2 className="mb-4 text-2xl font-serif font-light text-center text-[var(--text-primary)]">
-              深度研究资料
-            </h2>
-
-            <p className="mb-6 text-center text-sm text-[var(--text-secondary)] leading-relaxed">
-              研究笔记与核心案例的完整版本，包含详细的数学推导、实验数据与代码实现，
-              仅供深度学习者研读。
-            </p>
-
-            <div className="grid gap-4 sm:grid-cols-2 mb-6">
-              <div className="border-thin p-4">
-                <div className="mb-2 text-xs font-mono text-[var(--text-tertiary)]">Mathematical Derivation</div>
-                <div className="text-sm text-[var(--text-primary)]">完整的公式推导过程</div>
-              </div>
-              <div className="border-thin p-4">
-                <div className="mb-2 text-xs font-mono text-[var(--text-tertiary)]">Experimental Data</div>
-                <div className="text-sm text-[var(--text-primary)]">实测数据与仿真对比</div>
-              </div>
-              <div className="border-thin p-4">
-                <div className="mb-2 text-xs font-mono text-[var(--text-tertiary)]">Code Implementation</div>
-                <div className="text-sm text-[var(--text-primary)]">完整的代码实现</div>
-              </div>
-              <div className="border-thin p-4">
-                <div className="mb-2 text-xs font-mono text-[var(--text-tertiary)]">Reference</div>
-                <div className="text-sm text-[var(--text-primary)]">完整的参考文献</div>
+              <div className="mt-1" style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)' }}>
+                {stat.label}
               </div>
             </div>
-
-            <div className="flex justify-center">
-              <Link
-                href="/insights"
-                className="btn-industrial btn-primary"
-              >
-                查看研究资料
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-          </div>
+          ))}
         </div>
-      </section>
+      </KnowledgeBlock>
 
-      {/* 页脚 */}
-      <footer className="border-t border-thin py-12">
-        <div className="mx-auto max-w-6xl px-8">
-          <div className="grid gap-8 md:grid-cols-4 mb-8">
-            <div className="md:col-span-2">
-              <Link
-                href="/"
-                className="text-xl font-serif font-semibold text-[var(--text-primary)]"
-              >
-                RF Research
-              </Link>
-              <p className="mt-2 text-sm text-[var(--text-secondary)] leading-relaxed">
-                专注射频电路设计、5G/6G 通信、高频电路工程实践。
-                提供技术笔记、工程工具与研究资料，促进射频工程知识分享。
+      {/* 研究方向 - 数学符号 + 物理常数 */}
+      <KnowledgeBlock
+        title="Research Areas"
+        subtitle="研究方向"
+      >
+        <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'var(--space-6)' }}>
+          {researchAreas.map((area, index) => (
+            <div
+              key={index}
+              style={{ padding: 'var(--space-6)' }}
+            >
+              <div className="flex justify-between items-start mb-4">
+                <span className="font-serif font-bold" style={{ fontSize: '2rem', color: 'var(--color-primary)' }}>
+                  {area.symbol}
+                </span>
+                <span className="font-mono text-[10px]" style={{ color: 'var(--text-tertiary)' }}>
+                  {area.constant}
+                </span>
+              </div>
+
+              <h3 className="font-serif font-medium mb-2" style={{ fontSize: '1.125rem', color: 'var(--text-primary)' }}>
+                {area.title}
+              </h3>
+
+              <p className="mb-4" style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                {area.description}
               </p>
-            </div>
 
-            <div>
-              <h4 className="mb-4 text-sm font-semibold text-[var(--text-primary)]">
-                导航
-              </h4>
-              <div className="space-y-2 text-sm">
-                <Link href="/notes" className="block text-[var(--text-secondary)] hover:text-[var(--text-primary)]">
-                  Technical Notes
-                </Link>
-                <Link href="/publications" className="block text-[var(--text-secondary)] hover:text-[var(--text-primary)]">
-                  Publications
-                </Link>
-                <Link href="/tools" className="block text-[var(--text-secondary)] hover:text-[var(--text-primary)]">
-                  Tools
-                </Link>
-                <Link href="/cases" className="block text-[var(--text-secondary)] hover:text-[var(--text-primary)]">
-                  工程案例
-                </Link>
+              {/* 指标数据 */}
+              <div className="mb-4 grid gap-2" style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
+                {area.metrics.map((metric, i) => (
+                  <div key={i}>
+                    <div className="font-mono" style={{ color: 'var(--color-primary)', fontSize: '0.875rem' }}>{metric.value}</div>
+                    <div style={{ fontSize: '0.625rem', color: 'var(--text-tertiary)' }}>{metric.label}</div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex flex-wrap gap-1">
+                {area.focus.map((item, i) => (
+                  <span
+                    key={i}
+                    style={{
+                      padding: '2px 8px',
+                      fontSize: '0.75rem',
+                      backgroundColor: 'var(--bg-tertiary)',
+                      color: 'var(--text-secondary)',
+                    }}
+                  >
+                    {item}
+                  </span>
+                ))}
               </div>
             </div>
-
-            <div>
-              <h4 className="mb-4 text-sm font-semibold text-[var(--text-primary)]">
-                关于
-              </h4>
-              <div className="space-y-2 text-sm">
-                <Link href="/about" className="block text-[var(--text-secondary)] hover:text-[var(--text-primary)]">
-                  Biography
-                </Link>
-                <Link href="/about#contact" className="block text-[var(--text-secondary)] hover:text-[var(--text-primary)]">
-                  Contact
-                </Link>
-                <Link href="https://github.com/changrenyuan" target="_blank" className="block text-[var(--text-secondary)] hover:text-[var(--text-primary)]">
-                  GitHub
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-thin pt-8 text-center text-xs text-[var(--text-tertiary)]">
-            <p className="mb-2">
-              © 2025 RF Research. All rights reserved.
-            </p>
-            <p>
-              专注射频电路设计、5G/6G 通信、高频电路工程实践
-            </p>
-          </div>
+          ))}
         </div>
-      </footer>
+      </KnowledgeBlock>
+
+      {/* 技术札记 - 文章索引号 */}
+      <KnowledgeBlock
+        title="Technical Notes"
+        subtitle="近期技术札记"
+      >
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
+          {technicalNotes.map((note, index) => (
+            <Link
+              key={index}
+              href={`/notes/${encodeURIComponent(note.title)}`}
+              style={{
+                textDecoration: 'none',
+                padding: 'var(--space-4)',
+                color: 'inherit',
+              }}
+            >
+              <div className="mb-2 flex items-center gap-3" style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)' }}>
+                <span className="font-mono text-[10px] opacity-50">{note.id}</span>
+                <span className="font-mono">{note.date}</span>
+                <span>·</span>
+                <span style={{
+                  padding: '2px 8px',
+                  backgroundColor: 'var(--bg-tertiary)',
+                  color: 'var(--text-secondary)',
+                }}>
+                  {note.category}
+                </span>
+                <span>·</span>
+                <span>{note.readTime}</span>
+                {note.isDeep && (
+                  <>
+                    <span>·</span>
+                    <span style={{ color: 'var(--color-primary)', fontWeight: 500 }}>
+                      深度研读
+                    </span>
+                  </>
+                )}
+              </div>
+
+              <h3 className="font-serif font-medium mb-2" style={{ fontSize: '1.125rem', color: 'var(--text-primary)' }}>
+                {note.title}
+              </h3>
+
+              <p className="text-sm" style={{ color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                {note.excerpt}
+              </p>
+
+              <div className="mt-2 flex flex-wrap gap-1">
+                {note.tags.map((tag, i) => (
+                  <span
+                    key={i}
+                    className="font-mono"
+                    style={{
+                      padding: '2px 8px',
+                      fontSize: '0.75rem',
+                      backgroundColor: 'var(--bg-code)',
+                      color: 'var(--text-tertiary)',
+                    }}
+                  >
+                    #{tag}
+                  </span>
+                ))}
+              </div>
+            </Link>
+          ))}
+        </div>
+      </KnowledgeBlock>
     </div>
   );
 }
