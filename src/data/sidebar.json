@@ -1,0 +1,89 @@
+{
+  "fundamentals": {
+    "title": "基础理论",
+    "items": [
+      {
+        "id": "transmission-line",
+        "title": "传输线理论",
+        "slug": "fundamentals/transmission-line",
+        "description": "理解射频电路的基础：特性阻抗、反射系数、驻波比"
+      },
+      {
+        "id": "smith-chart",
+        "title": "史密斯圆图",
+        "slug": "fundamentals/smith-chart",
+        "description": "射频工程师的必备工具：阻抗匹配的可视化方法"
+      },
+      {
+        "id": "impedance-matching",
+        "title": "阻抗匹配网络",
+        "slug": "fundamentals/impedance-matching",
+        "description": "L型、T型、π型匹配网络的设计与优化"
+      },
+      {
+        "id": "s-parameters",
+        "title": "S参数基础",
+        "slug": "fundamentals/s-parameters",
+        "description": "射频网络分析的核心工具"
+      }
+    ]
+  },
+  "circuit-design": {
+    "title": "电路设计",
+    "items": [
+      {
+        "id": "pa-design",
+        "title": "功率放大器设计",
+        "slug": "circuit-design/pa-design",
+        "description": "PA的效率、线性度与稳定性权衡"
+      },
+      {
+        "id": "lna-design",
+        "title": "低噪声放大器设计",
+        "slug": "circuit-design/lna-design",
+        "description": "噪声系数、增益与稳定性的优化"
+      },
+      {
+        "id": "filter-design",
+        "title": "滤波器设计",
+        "slug": "circuit-design/filter-design",
+        "description": "从LC滤波器到微带滤波器的设计方法"
+      },
+      {
+        "id": "mixer-design",
+        "title": "混频器设计",
+        "slug": "circuit-design/mixer-design",
+        "description": "变频损耗、隔离度与杂散抑制"
+      }
+    ]
+  },
+  "measurement": {
+    "title": "测量技术",
+    "items": [
+      {
+        "id": "vna-usage",
+        "title": "VNA使用指南",
+        "slug": "measurement/vna-usage",
+        "description": "矢量网络分析仪的校准与测量技巧"
+      },
+      {
+        "id": "spectrum-analyzer",
+        "title": "频谱仪应用",
+        "slug": "measurement/spectrum-analyzer",
+        "description": "频谱分析、相位噪声与杂散测量"
+      },
+      {
+        "id": "power-measurement",
+        "title": "功率测量",
+        "slug": "measurement/power-measurement",
+        "description": "功率计使用、峰值功率与平均功率"
+      },
+      {
+        "id": "noise-measurement",
+        "title": "噪声系数测量",
+        "slug": "measurement/noise-measurement",
+        "description": "Y因子法与冷源法测量噪声系数"
+      }
+    ]
+  }
+}

@@ -15,7 +15,7 @@ export function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   const navLinks: NavLink[] = [
-    { label: 'Notes', href: '/notes' },
+    { label: 'Knowledge', href: '/knowledge' },
     { label: 'Publications', href: '/publications' },
     { label: 'Tools', href: '/tools' },
     {
