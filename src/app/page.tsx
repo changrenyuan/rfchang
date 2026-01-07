@@ -165,7 +165,7 @@ export default function Home() {
 
       {/* 导航栏 - 极简学术风格 */}
       <nav className="border-b border-thin bg-[var(--bg-secondary)]">
-        <div className="mx-auto max-w-6xl px-8 py-4">
+        <div className="main-container">
           <div className="flex items-center justify-between">
             <div>
               <Link href="/" className="text-xl font-serif font-semibold text-[var(--text-primary)]">
@@ -207,7 +207,7 @@ export default function Home() {
 
       {/* Hero 区域 - 学术格言与统计数据 */}
       <section className="border-b border-thin py-16">
-        <div className="mx-auto max-w-4xl px-8">
+        <div className="content-container">
           <blockquote className="mb-12 text-3xl font-serif font-light leading-relaxed text-[var(--text-primary)]">
             "射频设计不仅是电路计算，更是对电磁波的深度理解与工程智慧的平衡。"
           </blockquote>
@@ -233,7 +233,7 @@ export default function Home() {
 
       {/* 研究方向 - 带指标数据 */}
       <section className="py-16">
-        <div className="mx-auto max-w-6xl px-8">
+        <div className="main-container">
           <div className="mb-8 flex items-center justify-between">
             <h2 className="text-2xl font-serif font-light text-[var(--text-primary)]">
               Research Areas
@@ -296,7 +296,7 @@ export default function Home() {
 
       {/* 技术札记 - 增强信息密度 */}
       <section className="border-t border-thin py-16">
-        <div className="mx-auto max-w-4xl px-8">
+        <div className="content-container">
           <div className="mb-8 flex items-center justify-between">
             <h2 className="text-2xl font-serif font-light text-[var(--text-primary)]">
               Recent Technical Notes
@@ -361,7 +361,7 @@ export default function Home() {
 
       {/* 开源资源 - 统一列表风格 */}
       <section className="border-t border-thin py-16">
-        <div className="mx-auto max-w-6xl px-8">
+        <div className="main-container">
           <div className="mb-8 flex items-center justify-between">
             <h2 className="text-2xl font-serif font-light text-[var(--text-primary)]">
               Open Source Resources

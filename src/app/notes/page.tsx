@@ -111,7 +111,7 @@ export default function NotesPage() {
     <div className="min-h-screen bg-[var(--bg-primary)]">
       {/* 导航栏 */}
       <nav className="border-b border-thin bg-[var(--bg-secondary)]">
-        <div className="mx-auto max-w-4xl px-8 py-4">
+        <div className="main-container">
           <div className="flex items-center justify-between">
             <Link href="/" className="text-xl font-serif font-semibold text-[var(--text-primary)]">
               RF Research
@@ -125,7 +125,7 @@ export default function NotesPage() {
 
       {/* 页面头部 */}
       <section className="border-b border-thin py-16">
-        <div className="mx-auto max-w-4xl px-8">
+        <div className="content-container">
           <div className="flex items-center gap-3 mb-4">
             <BookOpen className="h-6 w-6 text-[var(--color-primary)]" />
             <span className="text-sm text-[var(--text-tertiary)] font-mono">
@@ -159,7 +159,7 @@ export default function NotesPage() {
 
       {/* 分类筛选 */}
       <section className="border-b border-thin py-8">
-        <div className="mx-auto max-w-4xl px-8">
+        <div className="content-container">
           <div className="flex items-center gap-4 overflow-x-auto">
             {categories.map((category) => (
               <button
@@ -175,15 +175,15 @@ export default function NotesPage() {
 
       {/* 札记列表 */}
       <section className="py-16">
-        <div className="mx-auto max-w-4xl px-8">
-          <div className="space-y-4">
+        <div className="content-container">
+          <div className="card-container">
             {notes.map((note) => (
               <Link
                 key={note.id}
                 href={`/notes/${note.slug}`}
-                className="block border-l-thin pl-4 py-4 hover:bg-[var(--bg-tertiary)] transition-colors"
+                className="card-item"
               >
-                <div className="mb-2 flex items-center gap-3 text-xs text-[var(--text-tertiary)]">
+                <div className="mb-3 flex items-center gap-3 text-xs text-[var(--text-tertiary)]">
                   <span className="font-mono">{note.date}</span>
                   <span>·</span>
                   <span className="px-2 py-0.5 bg-[var(--bg-tertiary)] text-[var(--text-secondary)]">
@@ -205,17 +205,17 @@ export default function NotesPage() {
                   {note.title}
                 </h3>
 
-                <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+                <p className="mb-3 text-sm text-[var(--text-secondary)] leading-relaxed">
                   {note.excerpt}
                 </p>
 
-                <div className="mt-3 flex flex-wrap gap-1">
+                <div className="flex flex-wrap gap-1">
                   {note.tags.map((tag, i) => (
                     <span
                       key={i}
-                      className="px-2 py-0.5 text-xs bg-[var(--bg-tertiary)] text-[var(--text-tertiary)] rounded-industrial-sm"
+                      className="px-2 py-0.5 text-xs bg-[var(--bg-code)] text-[var(--text-tertiary)] rounded-industrial-sm font-mono"
                     >
-                      {tag}
+                      #{tag}
                     </span>
                   ))}
                 </div>

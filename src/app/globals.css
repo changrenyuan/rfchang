@@ -89,6 +89,23 @@ body {
 }
 
 /* ========================================
+   主容器 Main Container
+   ======================================== */
+
+.main-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-8);
+}
+
+/* 内容容器 - 用于正文阅读区 */
+.content-container {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 0 var(--space-8);
+}
+
+/* ========================================
    字体系统 Typography
    ======================================== */
 
@@ -283,19 +300,93 @@ code, pre, .code {
   border-collapse: collapse;
   font-family: var(--font-sans);
   font-size: 0.875rem;
+  border-top: var(--border-width) solid var(--border-color-light);
 }
 
 .table-industrial th {
-  padding: var(--space-3);
+  padding: var(--space-4);
   text-align: left;
   font-weight: 600;
-  border-bottom: var(--border-width) solid var(--border-color-dark);
+  border-bottom: var(--border-width) solid var(--border-color-light);
   background-color: var(--bg-tertiary);
+  font-family: var(--font-serif);
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
 }
 
 .table-industrial td {
-  padding: var(--space-3);
-  border-bottom: var(--border-width) solid var(--border-color);
+  padding: var(--space-4);
+  border-bottom: var(--border-width) solid rgba(226, 232, 240, 0.5);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+}
+
+/* 斑马纹 - 极淡的背景色 */
+.table-industrial tbody tr:nth-child(even) {
+  background-color: #F9FAFB;
+}
+
+.table-industrial tbody tr:hover {
+  background-color: #F1F5F9;
+}
+
+/* ========================================
+   卡片布局 Card Layout
+   ======================================== */
+
+.card-container {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.card-item {
+  background-color: var(--bg-secondary);
+  border: var(--border-width) solid rgba(226, 232, 240, 0.6);
+  padding: var(--space-6);
+  transition: border-color 0.15s ease;
+}
+
+.card-item:hover {
+  border-color: rgba(148, 163, 184, 0.8);
+}
+
+/* ========================================
+   公式块和引用块 Formula & Quote Blocks
+   ======================================== */
+
+.formula-block {
+  background-color: var(--bg-tertiary);
+  border: var(--border-width) solid rgba(226, 232, 240, 0.4);
+  padding: var(--space-6);
+  margin: var(--space-8) 0;
+  border-radius: var(--radius-md);
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.9375rem;
+}
+
+.quote-block {
+  background-color: rgba(241, 245, 249, 0.3);
+  border-left: 3px solid var(--color-primary);
+  padding: var(--space-4) var(--space-6);
+  margin: var(--space-6) 0;
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--text-secondary);
+  font-size: 1.0625rem;
+  line-height: 1.8;
+}
+
+/* ========================================
+   模块间距 Section Spacing
+   ======================================== */
+
+section {
+  margin-bottom: var(--space-16);
+}
+
+section:last-child {
+  margin-bottom: 0;
 }
 
 /* ========================================

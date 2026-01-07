@@ -122,7 +122,7 @@ export default function AboutPage() {
 
       {/* 导航栏 */}
       <nav className="border-b border-thin bg-[var(--bg-secondary)]">
-        <div className="mx-auto max-w-4xl px-8 py-4">
+        <div className="main-container">
           <div className="flex items-center justify-between">
             <Link href="/" className="text-xl font-serif font-semibold text-[var(--text-primary)]">
               RF Research
@@ -136,7 +136,7 @@ export default function AboutPage() {
 
       {/* Hero 区域 */}
       <section className="border-b border-thin py-16">
-        <div className="mx-auto max-w-4xl px-8">
+        <div className="content-container">
           <h1 className="text-4xl font-serif font-light text-[var(--text-primary)] mb-6">
             常人元
           </h1>
@@ -180,7 +180,7 @@ export default function AboutPage() {
 
       {/* 专业简介 */}
       <section className="border-b border-thin py-16">
-        <div className="mx-auto max-w-4xl px-8">
+        <div className="content-container">
           <h2 className="text-2xl font-serif font-light text-[var(--text-primary)] mb-8">
             专业简介
           </h2>
@@ -203,7 +203,7 @@ export default function AboutPage() {
 
       {/* 专长领域 */}
       <section className="border-b border-thin py-16">
-        <div className="mx-auto max-w-4xl px-8">
+        <div className="content-container">
           <h2 className="text-2xl font-serif font-light text-[var(--text-primary)] mb-8">
             专长领域
           </h2>
@@ -228,7 +228,7 @@ export default function AboutPage() {
 
       {/* 教育背景 */}
       <section className="border-b border-thin py-16">
-        <div className="mx-auto max-w-4xl px-8">
+        <div className="content-container">
           <h2 className="text-2xl font-serif font-light text-[var(--text-primary)] mb-8">
             教育背景
           </h2>
@@ -261,7 +261,7 @@ export default function AboutPage() {
 
       {/* 代表性论文 */}
       <section className="border-b border-thin py-16">
-        <div className="mx-auto max-w-4xl px-8">
+        <div className="content-container">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-2xl font-serif font-light text-[var(--text-primary)]">
               代表性论文
@@ -303,7 +303,7 @@ export default function AboutPage() {
 
       {/* 社交链接 */}
       <section className="border-b border-thin py-16">
-        <div className="mx-auto max-w-4xl px-8">
+        <div className="content-container">
           <h2 className="text-2xl font-serif font-light text-[var(--text-primary)] mb-8">
             联系与社交
           </h2>
