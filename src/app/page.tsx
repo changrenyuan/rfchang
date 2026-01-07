@@ -20,34 +20,52 @@ export default function Home() {
       icon: Activity,
       title: '5G/6G 射频前端设计',
       description: 'Massive MIMO、毫米波功率放大器、滤波器组',
+      engineeringNote: '高频段信号完整性挑战与 PA 效率优化',
       metrics: [
         { label: '研究方向', value: '3' },
         { label: '项目经验', value: '8+' },
         { label: '技术深度', value: 'Advanced' },
       ],
       focus: ['大规模天线阵列', '毫米波 PA 线性化', '滤波器集成'],
+      subItems: [
+        'Sub-6GHz / mmWave 多频段兼容设计',
+        '数字预失真 (DPD) 线性化实现',
+        '收发隔离度优化技术',
+      ],
     },
     {
       icon: TrendingUp,
       title: '高频电路与信号完整性',
       description: '高速互连、电磁兼容、阻抗匹配',
+      engineeringNote: 'GHz 级信号传输的衰减与反射控制',
       metrics: [
         { label: '设计案例', value: '15+' },
         { label: '测试覆盖', value: '95%' },
         { label: '验证周期', value: '< 2 weeks' },
       ],
       focus: ['差分对设计', '眼图分析', '电源完整性'],
+      subItems: [
+        'PCB 差分对阻抗匹配设计',
+        '高速信号眼图与时序分析',
+        'EMC/EMI 干扰抑制策略',
+      ],
     },
     {
       icon: Shield,
       title: '射频测量与校准',
       description: '矢量网络分析仪、相位噪声、误差矢量幅度',
+      engineeringNote: '高精度测量的系统误差修正方法',
       metrics: [
         { label: '校准标准', value: 'IEEE' },
         { label: '测试工具', value: '自研' },
         { label: '准确度', value: '±0.5 dB' },
       ],
       focus: ['S 参数测量', '误差修正', '自动化测试'],
+      subItems: [
+        'VNA 校准与系统误差建模',
+        '相位噪声测量与抖动分析',
+        'EVM 测试与线性度评估',
+      ],
     },
   ];
 
@@ -107,6 +125,46 @@ export default function Home() {
       language: 'Matlab',
       stars: 156,
       link: 'https://github.com/changrenyuan/impedance-matcher',
+    },
+  ];
+
+  // 典型工程任务
+  const engineeringTasks = [
+    {
+      category: 'Impedance Matching',
+      icon: '⚡',
+      tasks: [
+        { name: 'L 型匹配网络设计', link: '/tools#impedance-matcher', difficulty: 'Beginner' },
+        { name: 'T 型/π 型多级匹配', link: '/notes#t-pi-matching', difficulty: 'Intermediate' },
+        { name: '宽频带匹配优化', link: '/notes#broadband-matching', difficulty: 'Advanced' },
+      ],
+    },
+    {
+      category: 'Power Amplifier',
+      icon: '📡',
+      tasks: [
+        { name: 'PA 增益与效率权衡', link: '/notes#pa-efficiency', difficulty: 'Intermediate' },
+        { name: '数字预失真 (DPD) 实现', link: '/notes#dpd-implementation', difficulty: 'Advanced' },
+        { name: '线性化性能评估', link: '/tools#linearity-test', difficulty: 'Intermediate' },
+      ],
+    },
+    {
+      category: 'S-Parameter Analysis',
+      icon: '📊',
+      tasks: [
+        { name: 'S11/S21 测量与分析', link: '/tools#s-parameter', difficulty: 'Beginner' },
+        { name: '稳定性判定 (K 因子)', link: '/notes#stability-analysis', difficulty: 'Intermediate' },
+        { name: '增益平坦度优化', link: '/notes#gain-flattening', difficulty: 'Intermediate' },
+      ],
+    },
+    {
+      category: 'Noise Figure',
+      icon: '🔊',
+      tasks: [
+        { name: '噪声系数测量', link: '/tools#noise-figure', difficulty: 'Intermediate' },
+        { name: '低噪声放大器设计', link: '/notes#lna-design', difficulty: 'Advanced' },
+        { name: '级联系统噪声优化', link: '/notes#cascaded-noise', difficulty: 'Intermediate' },
+      ],
     },
   ];
 
@@ -231,6 +289,62 @@ export default function Home() {
         </div>
       </section>
 
+      {/* RF 工程快捷入口 - 提升可用性 */}
+      <section className="border-t py-12">
+        <div className="content-container">
+          <div className="mb-6">
+            <h2 className="text-lg font-serif font-light text-[var(--text-primary)]">
+              Quick Engineering Tools
+            </h2>
+            <p className="mt-1 text-sm text-[var(--text-tertiary)]">
+              常用 RF 工程计算工具
+            </p>
+          </div>
+
+          <div className="grid gap-3 grid-cols-2 sm:grid-cols-3 md:grid-cols-5">
+            <Link
+              href="/tools#smith-chart"
+              className="bg-[var(--bg-secondary)] p-3 hover:bg-[var(--bg-tertiary)] transition-colors"
+            >
+              <div className="mb-1 text-sm font-mono text-[var(--color-primary)]">Smith Chart</div>
+              <div className="text-xs text-[var(--text-tertiary)]">阻抗匹配设计</div>
+            </Link>
+
+            <Link
+              href="/tools#vswr-calculator"
+              className="bg-[var(--bg-secondary)] p-3 hover:bg-[var(--bg-tertiary)] transition-colors"
+            >
+              <div className="mb-1 text-sm font-mono text-[var(--color-primary)]">VSWR</div>
+              <div className="text-xs text-[var(--text-tertiary)]">驻波比计算</div>
+            </Link>
+
+            <Link
+              href="/tools#s-parameter"
+              className="bg-[var(--bg-secondary)] p-3 hover:bg-[var(--bg-tertiary)] transition-colors"
+            >
+              <div className="mb-1 text-sm font-mono text-[var(--color-primary)]">S Parameters</div>
+              <div className="text-xs text-[var(--text-tertiary)]">散射参数分析</div>
+            </Link>
+
+            <Link
+              href="/tools#attenuator"
+              className="bg-[var(--bg-secondary)] p-3 hover:bg-[var(--bg-tertiary)] transition-colors"
+            >
+              <div className="mb-1 text-sm font-mono text-[var(--color-primary)]">Attenuator</div>
+              <div className="text-xs text-[var(--text-tertiary)]">衰减器设计</div>
+            </Link>
+
+            <Link
+              href="/tools#series-parallel"
+              className="bg-[var(--bg-secondary)] p-3 hover:bg-[var(--bg-tertiary)] transition-colors"
+            >
+              <div className="mb-1 text-sm font-mono text-[var(--color-primary)]">Impedance</div>
+              <div className="text-xs text-[var(--text-tertiary)]">串并联阻抗</div>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* 研究方向 - 带指标数据 */}
       <section className="py-16">
         <div className="main-container">
@@ -263,9 +377,32 @@ export default function Home() {
                     {area.title}
                   </h3>
 
-                  <p className="mb-4 text-sm text-[var(--text-secondary)]">
+                  <p className="mb-2 text-sm text-[var(--text-secondary)]">
                     {area.description}
                   </p>
+
+                  {/* 工程说明文字 */}
+                  <div className="mb-4 p-2 bg-[var(--bg-tertiary)]">
+                    <div className="text-xs font-mono text-[var(--text-tertiary)] mb-1">
+                      Engineering Note
+                    </div>
+                    <div className="text-xs text-[var(--text-primary)] leading-relaxed">
+                      {area.engineeringNote}
+                    </div>
+                  </div>
+
+                  {/* 子条目列表 */}
+                  <div className="mb-4 space-y-1">
+                    {area.subItems.map((item, i) => (
+                      <div
+                        key={i}
+                        className="flex items-start gap-2 text-xs text-[var(--text-secondary)]"
+                      >
+                        <span className="text-[var(--color-primary)] mt-0.5">→</span>
+                        <span>{item}</span>
+                      </div>
+                    ))}
+                  </div>
 
                   {/* 指标数据 */}
                   <div className="mb-4 grid grid-cols-3 gap-2 text-xs">
@@ -290,6 +427,55 @@ export default function Home() {
                 </div>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* 典型工程任务 - 提升工程可用性 */}
+      <section className="border-t py-16">
+        <div className="main-container">
+          <div className="mb-8">
+            <h2 className="text-2xl font-serif font-light text-[var(--text-primary)]">
+              Typical Engineering Tasks
+            </h2>
+            <p className="mt-2 text-sm text-[var(--text-tertiary)]">
+              射频工程常见任务与对应资源链接
+            </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {engineeringTasks.map((taskGroup, index) => (
+              <div
+                key={index}
+                className="bg-[var(--bg-secondary)] p-4"
+              >
+                <div className="mb-4 flex items-center gap-2">
+                  <span className="text-lg">{taskGroup.icon}</span>
+                  <h3 className="text-base font-serif font-medium text-[var(--text-primary)]">
+                    {taskGroup.category}
+                  </h3>
+                </div>
+
+                <div className="space-y-2">
+                  {taskGroup.tasks.map((task, i) => (
+                    <Link
+                      key={i}
+                      href={task.link}
+                      className="block p-2 hover:bg-[var(--bg-tertiary)] transition-colors group"
+                    >
+                      <div className="mb-1 text-sm text-[var(--text-primary)] group-hover:text-[var(--color-primary)] transition-colors">
+                        {task.name}
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs px-1.5 py-0.5 bg-[var(--bg-code)] text-[var(--text-tertiary)] font-mono">
+                          {task.difficulty}
+                        </span>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

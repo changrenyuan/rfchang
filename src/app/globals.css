@@ -5,11 +5,11 @@
    ======================================== */
 
 :root {
-  /* 背景色 Background Colors */
-  --bg-primary: #FAFAFA;
+  /* 背景色 Background Colors - 增强层次感 */
+  --bg-primary: #F5F5F5;
   --bg-secondary: #FFFFFF;
-  --bg-tertiary: #F8F9FA;
-  --bg-code: #F1F5F9;
+  --bg-tertiary: #F7F8F9;
+  --bg-code: #F0F3F6;
 
   /* 文字颜色 Text Colors */
   --text-primary: #0F172A;
@@ -112,7 +112,7 @@ body {
 /* 衬线体标题 - 学术权威感 */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-serif);
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.4;
   color: var(--text-primary);
   margin-bottom: var(--space-4);
@@ -120,12 +120,13 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: 2.25rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: -0.02em;
 }
 
 h2 {
   font-size: 1.75rem;
+  font-weight: 650;
   letter-spacing: -0.015em;
   border-bottom: 1px solid var(--border-color);
   padding-bottom: var(--space-3);
@@ -133,7 +134,14 @@ h2 {
 
 h3 {
   font-size: 1.375rem;
+  font-weight: 600;
   letter-spacing: -0.01em;
+}
+
+h4 {
+  font-size: 1.125rem;
+  font-weight: 550;
+  letter-spacing: -0.005em;
 }
 
 /* 正文内容区域 */
@@ -270,6 +278,30 @@ code, pre, .code {
 .input-industrial:focus {
   outline: none;
   border-color: var(--color-primary);
+}
+
+/* 链接强调样式 - 增强交互反馈 */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+a:hover {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+/* 链接下划线效果 - 可选 */
+.link-underline {
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.15s ease;
+}
+
+.link-underline:hover {
+  border-bottom-color: var(--color-primary);
+  color: var(--color-primary);
 }
 
 /* ========================================
