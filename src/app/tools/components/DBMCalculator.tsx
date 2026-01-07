@@ -53,7 +53,7 @@ export default function DBMCalculator() {
 
       <div style={{ marginBottom: 'var(--space-8)' }}>
         {/* 特性阻抗 */}
-        <div className="mb-8 border-thin" style={{ backgroundColor: 'var(--bg-secondary)', padding: 'var(--space-4)' }}>
+        <div className="mb-8 " style={{ backgroundColor: 'var(--bg-secondary)', padding: 'var(--space-4)' }}>
           <label className="mb-2 block text-sm font-semibold" style={{ fontFamily: 'var(--font-sans)', color: 'var(--text-primary)' }}>
             系统阻抗 Z₀ (Ω) / System Impedance
           </label>
@@ -141,25 +141,25 @@ export default function DBMCalculator() {
 
       {/* 结果显示 */}
       {(dbm || watts || voltage) && (
-        <div className="border-thin" style={{ backgroundColor: 'var(--bg-tertiary)', padding: 'var(--space-8)' }}>
+        <div className="" style={{ backgroundColor: 'var(--bg-tertiary)', padding: 'var(--space-8)' }}>
           <h4 className="mb-6 text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--text-tertiary)' }}>
             计算结果 / Results
           </h4>
 
           <div className="grid gap-6" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))' }}>
-            <div className="border-thin" style={{ backgroundColor: 'var(--bg-secondary)', padding: 'var(--space-4)' }}>
+            <div className="" style={{ backgroundColor: 'var(--bg-secondary)', padding: 'var(--space-4)' }}>
               <div className="mb-2 text-xs" style={{ color: 'var(--text-tertiary)' }}>功率 (dBm)</div>
               <div className="text-3xl font-mono font-semibold" style={{ color: 'var(--color-primary)' }}>
                 {dbm || '-'}
               </div>
             </div>
-            <div className="border-thin" style={{ backgroundColor: 'var(--bg-secondary)', padding: 'var(--space-4)' }}>
+            <div className="" style={{ backgroundColor: 'var(--bg-secondary)', padding: 'var(--space-4)' }}>
               <div className="mb-2 text-xs" style={{ color: 'var(--text-tertiary)' }}>功率 (W)</div>
               <div className="text-3xl font-mono font-semibold" style={{ color: 'var(--color-primary)' }}>
                 {watts || '-'}
               </div>
             </div>
-            <div className="border-thin" style={{ backgroundColor: 'var(--bg-secondary)', padding: 'var(--space-4)' }}>
+            <div className="" style={{ backgroundColor: 'var(--bg-secondary)', padding: 'var(--space-4)' }}>
               <div className="mb-2 text-xs" style={{ color: 'var(--text-tertiary)' }}>电压 (V)</div>
               <div className="text-3xl font-mono font-semibold" style={{ color: 'var(--color-primary)' }}>
                 {voltage || '-'}
@@ -170,7 +170,7 @@ export default function DBMCalculator() {
       )}
 
       {/* 常用参考值 */}
-      <div className="border-thin mt-6" style={{ backgroundColor: 'var(--bg-tertiary)', padding: 'var(--space-6)' }}>
+      <div className="mt-6" style={{ backgroundColor: 'var(--bg-tertiary)', padding: 'var(--space-6)' }}>
         <h4 className="mb-4 text-sm font-semibold" style={{ fontFamily: 'var(--font-serif)', color: 'var(--text-primary)' }}>
           常用参考值 (50Ω 系统) / Reference Values (50Ω System)
         </h4>
@@ -227,7 +227,7 @@ export default function DBMCalculator() {
       </div>
 
       {/* 计算公式 */}
-      <div className="border-thin mt-6" style={{ backgroundColor: 'var(--bg-tertiary)', padding: 'var(--space-6)' }}>
+      <div className="mt-6" style={{ backgroundColor: 'var(--bg-tertiary)', padding: 'var(--space-6)' }}>
         <h4 className="mb-4 text-sm font-semibold" style={{ fontFamily: 'var(--font-serif)', color: 'var(--text-primary)' }}>
           计算公式 / Formulas
         </h4>

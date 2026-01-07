@@ -158,7 +158,7 @@ export default function ChangelogPage() {
 
         <EngineeringChangelog entries={changelogEntries} />
 
-        <div className="mt-12 border-t border-thin pt-8">
+        <div className="mt-12 border-t pt-8">
           <h2 className="text-xl font-serif font-semibold mb-4 text-[var(--text-primary)]">
             版本说明
           </h2>

@@ -20,64 +20,35 @@ export default function ToolsPage() {
   return (
     <div className="min-h-screen">
       {/* 导航栏 */}
-      <nav className="border-b-thin bg-[var(--bg-secondary)]">
+      <nav className="border-b bg-[var(--bg-secondary)]">
         <div className="main-container">
-          <div className="flex items-center justify-between" style={{ padding: 'var(--space-4) 0' }}>
-            <Link href="/" className="flex items-center gap-3">
-              <div
-                className="flex items-center justify-center text-sm font-mono font-semibold"
-                style={{
-                  width: '48px',
-                  height: '48px',
-                  backgroundColor: 'var(--color-primary)',
-                  color: 'white',
-                  borderRadius: 'var(--radius-sm)',
-                }}
-              >
-                RF
-              </div>
-              <div>
-                <h1
-                  className="font-semibold"
-                  style={{
-                    fontFamily: 'var(--font-serif)',
-                    fontSize: '1.125rem',
-                    color: 'var(--text-primary)',
-                  }}
-                >
-                  射频工程技术笔记
-                </h1>
-              </div>
-            </Link>
-            <div className="flex items-center gap-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <Link href="/" className="text-xl font-serif font-semibold text-[var(--text-primary)]">
+                RF Research
+              </Link>
+              <p className="mt-0.5 text-xs text-[var(--text-tertiary)]">
+                射频工程技术笔记
+              </p>
+            </div>
+            <div className="flex items-center gap-8 text-sm">
               <Link
                 href="/notes"
-                className="text-sm"
-                style={{
-                  fontFamily: 'var(--font-sans)',
-                  color: 'var(--text-secondary)',
-                  textDecoration: 'none',
-                }}
+                className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
               >
-                札记
+                Notes
               </Link>
               <Link
                 href="/tools"
-                className="text-sm"
-                style={{
-                  fontFamily: 'var(--font-sans)',
-                  color: 'var(--color-primary)',
-                  textDecoration: 'none',
-                  fontWeight: 500,
-                }}
+                className="text-[var(--color-primary)] hover:text-[var(--text-primary)] transition-colors"
               >
-                工具
+                Tools
               </Link>
               <Link
                 href="/about"
-                className="text-sm btn-industrial"
+                className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
               >
-                关于
+                About
               </Link>
             </div>
           </div>
@@ -153,7 +124,7 @@ export default function ToolsPage() {
           {/* 工具内容区 */}
           <div className="flex-1">
             <div
-              className="border-thin"
+              className=""
               style={{
                 backgroundColor: 'var(--bg-secondary)',
                 padding: 'var(--space-8)',

@@ -18,7 +18,7 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
   return (
     <div className="min-h-screen bg-[var(--bg-primary)]">
       {/* 导航栏 */}
-      <nav className="border-b border-thin bg-[var(--bg-secondary)]">
+      <nav className="border-b bg-[var(--bg-secondary)]">
         <div className="main-container">
           <div className="flex items-center justify-between">
             <Link href="/" className="text-xl font-serif font-semibold text-[var(--text-primary)]">
@@ -42,7 +42,7 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
         </Link>
 
         {/* 文章头部 */}
-        <div className="mb-8 border-thin bg-[var(--bg-secondary)] p-6">
+        <div className="mb-8 bg-[var(--bg-secondary)] p-6">
           <div className="mb-4 flex items-center gap-3">
             <span className="px-2 py-0.5 bg-[var(--bg-tertiary)] text-[var(--text-secondary)] text-xs">
               {article.category}

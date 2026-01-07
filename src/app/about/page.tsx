@@ -39,12 +39,6 @@ export default function AboutPage() {
       description: '射频电路设计、5G/6G通信技术笔记',
     },
     {
-      icon: Award,
-      label: '学术论文',
-      value: '12+',
-      description: 'IEEE、Nature Communications等顶级期刊',
-    },
-    {
       icon: Users,
       label: '工程项目',
       value: '25+',
@@ -73,18 +67,11 @@ export default function AboutPage() {
 
   const education = [
     {
-      degree: '博士',
-      major: '信息与通信工程',
-      school: '电子科技大学',
-      year: '2015-2019',
-      thesis: '毫米波大规模MIMO射频前端关键技术研究',
-    },
-    {
       degree: '硕士',
-      major: '电磁场与微波技术',
-      school: '西安电子科技大学',
+      major: '集成电路',
+      school: '清华大学',
       year: '2012-2015',
-      thesis: '射频功率放大器线性化技术研究',
+      thesis: '射频混频器线性化技术研究',
     },
   ];
 
@@ -121,7 +108,7 @@ export default function AboutPage() {
       />
 
       {/* 导航栏 */}
-      <nav className="border-b border-thin bg-[var(--bg-secondary)]">
+      <nav className="border-b bg-[var(--bg-secondary)]">
         <div className="main-container">
           <div className="flex items-center justify-between">
             <Link href="/" className="text-xl font-serif font-semibold text-[var(--text-primary)]">
@@ -135,7 +122,7 @@ export default function AboutPage() {
       </nav>
 
       {/* Hero 区域 */}
-      <section className="border-b border-thin py-16">
+      <section className="border-b py-16">
         <div className="content-container">
           <h1 className="text-4xl font-serif font-light text-[var(--text-primary)] mb-6">
             常人元
@@ -148,9 +135,8 @@ export default function AboutPage() {
           <div className="flex items-center gap-4 text-sm text-[var(--text-tertiary)] mb-12">
             <span>RF Engineering Lab</span>
             <span>·</span>
-            <span>电子科技大学博士</span>
+            <span>清华大学硕士</span>
             <span>·</span>
-            <span>IEEE Senior Member</span>
           </div>
 
           {/* 专业数据统计 */}
@@ -158,7 +144,7 @@ export default function AboutPage() {
             {professionalSummary.map((item, index) => {
               const Icon = item.icon;
               return (
-                <div key={index} className="border-thin bg-[var(--bg-secondary)] p-4">
+                <div key={index} className="bg-[var(--bg-secondary)] p-4">
                   <div className="mb-2">
                     <Icon className="h-5 w-5 text-[var(--color-primary)]" />
                   </div>
@@ -179,7 +165,7 @@ export default function AboutPage() {
       </section>
 
       {/* 专业简介 */}
-      <section className="border-b border-thin py-16">
+      <section className="border-b py-16">
         <div className="content-container">
           <h2 className="text-2xl font-serif font-light text-[var(--text-primary)] mb-8">
             专业简介
@@ -187,7 +173,7 @@ export default function AboutPage() {
 
           <div className="prose prose-sm max-w-none">
             <p className="text-[var(--text-secondary)] leading-relaxed mb-6">
-              常人元是射频工程领域的资深专家，专注于 5G/6G 通信系统、毫米波射频前端设计和高频电路工程研究。作为电子科技大学信息与通信工程博士，常人元在射频功率放大器线性化、大规模天线阵列设计和毫米波链路预算等领域积累了深厚的理论基础和丰富的工程经验。
+              常人元是射频工程领域的资深专家，专注于 5G/6G 通信系统、毫米波射频前端设计和高频电路工程研究。常人元在射频功率放大器线性化、大规模天线阵列设计和毫米波链路预算等领域积累了深厚的理论基础和丰富的工程经验。
             </p>
 
             <p className="text-[var(--text-secondary)] leading-relaxed mb-6">
@@ -202,7 +188,7 @@ export default function AboutPage() {
       </section>
 
       {/* 专长领域 */}
-      <section className="border-b border-thin py-16">
+      <section className="border-b py-16">
         <div className="content-container">
           <h2 className="text-2xl font-serif font-light text-[var(--text-primary)] mb-8">
             专长领域
@@ -212,7 +198,7 @@ export default function AboutPage() {
             {expertise.map((item, index) => (
               <div
                 key={index}
-                className="border-thin bg-[var(--bg-secondary)] p-6 hover:border-[var(--border-color-dark)] transition-colors"
+                className="bg-[var(--bg-secondary)] p-6 hover:border-[var(--border-color-dark)] transition-colors"
               >
                 <h3 className="text-lg font-serif font-medium text-[var(--text-primary)] mb-2">
                   {item.title}
@@ -227,7 +213,7 @@ export default function AboutPage() {
       </section>
 
       {/* 教育背景 */}
-      <section className="border-b border-thin py-16">
+      <section className="border-b py-16">
         <div className="content-container">
           <h2 className="text-2xl font-serif font-light text-[var(--text-primary)] mb-8">
             教育背景
@@ -237,7 +223,7 @@ export default function AboutPage() {
             {education.map((edu, index) => (
               <div
                 key={index}
-                className="border-l-thin pl-4 py-2"
+                className="pl-4 py-2"
               >
                 <div className="flex items-baseline gap-3 mb-1">
                   <span className="text-base font-medium text-[var(--text-primary)]">
@@ -260,7 +246,7 @@ export default function AboutPage() {
       </section>
 
       {/* 代表性论文 */}
-      <section className="border-b border-thin py-16">
+      <section className="border-b py-16">
         <div className="content-container">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-2xl font-serif font-light text-[var(--text-primary)]">
@@ -279,7 +265,7 @@ export default function AboutPage() {
             {publications.map((pub, index) => (
               <div
                 key={index}
-                className="border-l-thin pl-4 py-3 hover:bg-[var(--bg-tertiary)] transition-colors"
+                className="pl-4 py-3 hover:bg-[var(--bg-tertiary)] transition-colors"
               >
                 <div className="flex items-baseline gap-2 mb-1">
                   <h3 className="text-sm font-medium text-[var(--text-primary)]">
@@ -302,7 +288,7 @@ export default function AboutPage() {
       </section>
 
       {/* 社交链接 */}
-      <section className="border-b border-thin py-16">
+      <section className="border-b py-16">
         <div className="content-container">
           <h2 className="text-2xl font-serif font-light text-[var(--text-primary)] mb-8">
             联系与社交
@@ -311,7 +297,7 @@ export default function AboutPage() {
           <div className="grid gap-4">
             <Link
               href="mailto:changry@rf-research.com"
-              className="flex items-center gap-3 border-thin bg-[var(--bg-secondary)] p-4 hover:border-[var(--border-color-dark)] transition-colors"
+              className="flex items-center gap-3 bg-[var(--bg-secondary)] p-4 hover:border-[var(--border-color-dark)] transition-colors"
             >
               <Mail className="h-5 w-5 text-[var(--color-primary)]" />
               <div>
@@ -324,7 +310,7 @@ export default function AboutPage() {
               href="https://github.com/changrenyuan"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 border-thin bg-[var(--bg-secondary)] p-4 hover:border-[var(--border-color-dark)] transition-colors"
+              className="flex items-center gap-3 bg-[var(--bg-secondary)] p-4 hover:border-[var(--border-color-dark)] transition-colors"
             >
               <Github className="h-5 w-5 text-[var(--color-primary)]" />
               <div>
@@ -337,7 +323,7 @@ export default function AboutPage() {
               href="https://www.linkedin.com/in/changry"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 border-thin bg-[var(--bg-secondary)] p-4 hover:border-[var(--border-color-dark)] transition-colors"
+              className="flex items-center gap-3 bg-[var(--bg-secondary)] p-4 hover:border-[var(--border-color-dark)] transition-colors"
             >
               <Linkedin className="h-5 w-5 text-[var(--color-primary)]" />
               <div>

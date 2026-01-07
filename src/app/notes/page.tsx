@@ -110,7 +110,7 @@ export default function NotesPage() {
   return (
     <div className="min-h-screen bg-[var(--bg-primary)]">
       {/* 导航栏 */}
-      <nav className="border-b border-thin bg-[var(--bg-secondary)]">
+      <nav className="border-b bg-[var(--bg-secondary)]">
         <div className="main-container">
           <div className="flex items-center justify-between">
             <Link href="/" className="text-xl font-serif font-semibold text-[var(--text-primary)]">
@@ -124,7 +124,7 @@ export default function NotesPage() {
       </nav>
 
       {/* 页面头部 */}
-      <section className="border-b border-thin py-16">
+      <section className="border-b py-16">
         <div className="content-container">
           <div className="flex items-center gap-3 mb-4">
             <BookOpen className="h-6 w-6 text-[var(--color-primary)]" />
@@ -158,13 +158,13 @@ export default function NotesPage() {
       </section>
 
       {/* 分类筛选 */}
-      <section className="border-b border-thin py-8">
+      <section className="border-b py-8">
         <div className="content-container">
           <div className="flex items-center gap-4 overflow-x-auto">
             {categories.map((category) => (
               <button
                 key={category}
-                className="whitespace-nowrap px-4 py-2 text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] border-thin bg-[var(--bg-secondary)] hover:border-[var(--border-color-dark)] transition-colors"
+                className="whitespace-nowrap px-4 py-2 text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] bg-[var(--bg-secondary)] hover:border-[var(--border-color-dark)] transition-colors"
               >
                 {category}
               </button>
@@ -226,7 +226,7 @@ export default function NotesPage() {
       </section>
 
       {/* 页脚 */}
-      <footer className="border-t border-thin py-8 text-center text-xs text-[var(--text-tertiary)]">
+      <footer className="border-t py-8 text-center text-xs text-[var(--text-tertiary)]">
         <p>© {new Date().getFullYear()} 常人元 · RF Engineering Lab</p>
       </footer>
     </div>

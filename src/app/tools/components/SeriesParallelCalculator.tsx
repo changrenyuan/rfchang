@@ -75,7 +75,7 @@ export default function SeriesParallelCalculator() {
 
         {/* 输入参数 */}
         <div className="grid gap-6 mb-8" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))' }}>
-          <div className="border-thin" style={{ backgroundColor: 'var(--bg-secondary)', padding: 'var(--space-4)' }}>
+          <div className="" style={{ backgroundColor: 'var(--bg-secondary)', padding: 'var(--space-4)' }}>
             <label className="mb-2 block text-sm font-semibold" style={{ fontFamily: 'var(--font-sans)', color: 'var(--text-primary)' }}>
               {mode === 'series-to-parallel' ? '串联电阻 Rs (Ω)' : '并联电阻 Rp (Ω)'}
             </label>
@@ -88,7 +88,7 @@ export default function SeriesParallelCalculator() {
               placeholder={mode === 'series-to-parallel' ? '输入串联电阻' : '输入并联电阻'}
             />
           </div>
-          <div className="border-thin" style={{ backgroundColor: 'var(--bg-secondary)', padding: 'var(--space-4)' }}>
+          <div className="" style={{ backgroundColor: 'var(--bg-secondary)', padding: 'var(--space-4)' }}>
             <label className="mb-2 block text-sm font-semibold" style={{ fontFamily: 'var(--font-sans)', color: 'var(--text-primary)' }}>
               {mode === 'series-to-parallel' ? '串联电抗 Xs (Ω)' : '并联电抗 Xp (Ω)'}
             </label>
@@ -129,19 +129,19 @@ export default function SeriesParallelCalculator() {
       {/* 结果显示 */}
       {result && 'rp' in result && (
         <>
-          <div className="border-thin" style={{ backgroundColor: 'var(--bg-tertiary)', padding: 'var(--space-8)' }}>
+          <div className="" style={{ backgroundColor: 'var(--bg-tertiary)', padding: 'var(--space-8)' }}>
             <h4 className="mb-6 text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--text-tertiary)' }}>
               计算结果 / Results (Series → Parallel)
             </h4>
 
             <div className="grid gap-6 mb-6" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))' }}>
-              <div className="border-thin" style={{ backgroundColor: 'var(--bg-secondary)', padding: 'var(--space-4)' }}>
+              <div className="" style={{ backgroundColor: 'var(--bg-secondary)', padding: 'var(--space-4)' }}>
                 <div className="mb-2 text-xs" style={{ color: 'var(--text-tertiary)' }}>并联电阻 Rp (Ω)</div>
                 <div className="text-3xl font-mono font-semibold" style={{ color: 'var(--color-primary)' }}>
                   {result.rp}
                 </div>
               </div>
-              <div className="border-thin" style={{ backgroundColor: 'var(--bg-secondary)', padding: 'var(--space-4)' }}>
+              <div className="" style={{ backgroundColor: 'var(--bg-secondary)', padding: 'var(--space-4)' }}>
                 <div className="mb-2 text-xs" style={{ color: 'var(--text-tertiary)' }}>并联电抗 Xp (Ω)</div>
                 <div className="text-3xl font-mono font-semibold" style={{ color: 'var(--color-primary)' }}>
                   {result.xp}
@@ -150,7 +150,7 @@ export default function SeriesParallelCalculator() {
             </div>
 
             {parseFloat(f) > 0 && (
-              <div className="border-thin" style={{ padding: 'var(--space-4)', backgroundColor: 'var(--bg-secondary)' }}>
+              <div className="" style={{ padding: 'var(--space-4)', backgroundColor: 'var(--bg-secondary)' }}>
                 <div className="text-xs mb-2" style={{ color: 'var(--text-tertiary)' }}>元件值 / Component Value:</div>
                 {parseFloat(result.xp) > 0 ? (
                   <div className="font-mono text-sm" style={{ color: 'var(--text-secondary)' }}>
@@ -165,7 +165,7 @@ export default function SeriesParallelCalculator() {
             )}
           </div>
 
-          <div className="border-thin mt-6" style={{ backgroundColor: 'var(--bg-tertiary)', padding: 'var(--space-6)' }}>
+          <div className="mt-6" style={{ backgroundColor: 'var(--bg-tertiary)', padding: 'var(--space-6)' }}>
             <h4 className="mb-4 text-sm font-semibold" style={{ fontFamily: 'var(--font-serif)', color: 'var(--text-primary)' }}>
               计算公式 / Formulas
             </h4>
@@ -180,19 +180,19 @@ export default function SeriesParallelCalculator() {
 
       {result && 'rs' in result && (
         <>
-          <div className="border-thin" style={{ backgroundColor: 'var(--bg-tertiary)', padding: 'var(--space-8)' }}>
+          <div className="" style={{ backgroundColor: 'var(--bg-tertiary)', padding: 'var(--space-8)' }}>
             <h4 className="mb-6 text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--text-tertiary)' }}>
               计算结果 / Results (Parallel → Series)
             </h4>
 
             <div className="grid gap-6 mb-6" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))' }}>
-              <div className="border-thin" style={{ backgroundColor: 'var(--bg-secondary)', padding: 'var(--space-4)' }}>
+              <div className="" style={{ backgroundColor: 'var(--bg-secondary)', padding: 'var(--space-4)' }}>
                 <div className="mb-2 text-xs" style={{ color: 'var(--text-tertiary)' }}>串联电阻 Rs (Ω)</div>
                 <div className="text-3xl font-mono font-semibold" style={{ color: 'var(--color-primary)' }}>
                   {result.rs}
                 </div>
               </div>
-              <div className="border-thin" style={{ backgroundColor: 'var(--bg-secondary)', padding: 'var(--space-4)' }}>
+              <div className="" style={{ backgroundColor: 'var(--bg-secondary)', padding: 'var(--space-4)' }}>
                 <div className="mb-2 text-xs" style={{ color: 'var(--text-tertiary)' }}>串联电抗 Xs (Ω)</div>
                 <div className="text-3xl font-mono font-semibold" style={{ color: 'var(--color-primary)' }}>
                   {result.xs}
@@ -201,7 +201,7 @@ export default function SeriesParallelCalculator() {
             </div>
 
             {parseFloat(f) > 0 && (
-              <div className="border-thin" style={{ padding: 'var(--space-4)', backgroundColor: 'var(--bg-secondary)' }}>
+              <div className="" style={{ padding: 'var(--space-4)', backgroundColor: 'var(--bg-secondary)' }}>
                 <div className="text-xs mb-2" style={{ color: 'var(--text-tertiary)' }}>元件值 / Component Value:</div>
                 {parseFloat(result.xs) > 0 ? (
                   <div className="font-mono text-sm" style={{ color: 'var(--text-secondary)' }}>
@@ -216,7 +216,7 @@ export default function SeriesParallelCalculator() {
             )}
           </div>
 
-          <div className="border-thin mt-6" style={{ backgroundColor: 'var(--bg-tertiary)', padding: 'var(--space-6)' }}>
+          <div className="mt-6" style={{ backgroundColor: 'var(--bg-tertiary)', padding: 'var(--space-6)' }}>
             <h4 className="mb-4 text-sm font-semibold" style={{ fontFamily: 'var(--font-serif)', color: 'var(--text-primary)' }}>
               计算公式 / Formulas
             </h4>

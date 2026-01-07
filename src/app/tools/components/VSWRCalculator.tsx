@@ -84,7 +84,7 @@ export default function VSWRCalculator() {
         {/* 输入区域 */}
         <div className="grid gap-6 md:grid-cols-3">
           {/* VSWR 输入 */}
-          <div className="border-thin bg-[var(--bg-secondary)] p-6">
+          <div className="bg-[var(--bg-secondary)] p-6">
             <div className="mb-4">
               <label className="mb-2 block text-sm font-semibold text-[var(--text-primary)]">
                 VSWR (驻波比)
@@ -111,7 +111,7 @@ export default function VSWRCalculator() {
           </div>
 
           {/* 反射系数输入 */}
-          <div className="border-thin bg-[var(--bg-secondary)] p-6">
+          <div className="bg-[var(--bg-secondary)] p-6">
             <div className="mb-4">
               <label className="mb-2 block text-sm font-semibold text-[var(--text-primary)]">
                 Γ (反射系数)
@@ -135,7 +135,7 @@ export default function VSWRCalculator() {
           </div>
 
           {/* 回波损耗输入 */}
-          <div className="border-thin bg-[var(--bg-secondary)] p-6">
+          <div className="bg-[var(--bg-secondary)] p-6">
             <div className="mb-4">
               <label className="mb-2 block text-sm font-semibold text-[var(--text-primary)]">
                 RL (回波损耗, dB)
@@ -161,34 +161,34 @@ export default function VSWRCalculator() {
 
         {/* 结果显示区域 */}
         {result.isValid && (
-          <div className="border-thin bg-[var(--bg-tertiary)] p-8">
+          <div className="bg-[var(--bg-tertiary)] p-8">
             <h4 className="mb-6 text-sm font-semibold uppercase tracking-wider text-[var(--text-tertiary)]">
               计算结果
             </h4>
 
             <div className="grid gap-6 md:grid-cols-4">
-              <div className="border-thin bg-[var(--bg-secondary)] p-4">
+              <div className="bg-[var(--bg-secondary)] p-4">
                 <div className="mb-2 text-xs text-[var(--text-tertiary)]">VSWR</div>
                 <div className="text-3xl font-mono font-semibold text-[var(--color-primary)]">
                   {vswr}
                 </div>
               </div>
 
-              <div className="border-thin bg-[var(--bg-secondary)] p-4">
+              <div className="bg-[var(--bg-secondary)] p-4">
                 <div className="mb-2 text-xs text-[var(--text-tertiary)]">反射系数 Γ</div>
                 <div className="text-3xl font-mono font-semibold text-[var(--color-primary)]">
                   {result.reflection}
                 </div>
               </div>
 
-              <div className="border-thin bg-[var(--bg-secondary)] p-4">
+              <div className="bg-[var(--bg-secondary)] p-4">
                 <div className="mb-2 text-xs text-[var(--text-tertiary)]">回波损耗 (dB)</div>
                 <div className="text-3xl font-mono font-semibold text-[var(--color-primary)]">
                   {result.returnLoss}
                 </div>
               </div>
 
-              <div className="border-thin bg-[var(--bg-secondary)] p-4">
+              <div className="bg-[var(--bg-secondary)] p-4">
                 <div className="mb-2 text-xs text-[var(--text-tertiary)]">功率传输 (%)</div>
                 <div className="text-3xl font-mono font-semibold text-[var(--color-primary)]">
                   {result.powerTransmitted}
@@ -197,7 +197,7 @@ export default function VSWRCalculator() {
             </div>
 
             {/* 失配损耗 */}
-            <div className="mt-6 border-thin bg-[var(--bg-secondary)] p-4">
+            <div className="mt-6 bg-[var(--bg-secondary)] p-4">
               <div className="mb-2 text-xs text-[var(--text-tertiary)]">失配损耗 (dB)</div>
               <div className="text-2xl font-mono font-semibold text-[var(--text-primary)]">
                 {result.mismatchLoss}
@@ -207,13 +207,13 @@ export default function VSWRCalculator() {
         )}
 
         {/* 公式推导与原理 */}
-        <div className="border-t border-thin pt-8">
+        <div className="border-t pt-8">
           <h4 className="mb-6 text-lg font-serif font-semibold text-[var(--text-primary)]">
             原理与推导
           </h4>
 
           {/* 基础公式 */}
-          <div className="mb-6 border-thin bg-[var(--bg-secondary)] p-6">
+          <div className="mb-6 bg-[var(--bg-secondary)] p-6">
             <h5 className="mb-4 text-sm font-semibold text-[var(--text-primary)]">基础公式</h5>
             <div className="space-y-3 text-sm">
               <div className="formula-block">
@@ -247,7 +247,7 @@ export default function VSWRCalculator() {
           </div>
 
           {/* VSWR 评级参考 */}
-          <div className="mb-6 border-thin bg-[var(--bg-secondary)] p-6">
+          <div className="mb-6 bg-[var(--bg-secondary)] p-6">
             <h5 className="mb-4 text-sm font-semibold text-[var(--text-primary)]">VSWR 评级参考</h5>
             <div className="overflow-x-auto table-mobile-wrapper">
               <table className="table-industrial w-full">
@@ -309,7 +309,7 @@ export default function VSWRCalculator() {
           </div>
 
           {/* 参考文献 */}
-          <div className="border-thin bg-[var(--bg-secondary)] p-6">
+          <div className="bg-[var(--bg-secondary)] p-6">
             <div className="flex items-center gap-2 mb-4">
               <BookOpen className="h-4 w-4 text-[var(--color-primary)]" />
               <h5 className="text-sm font-semibold text-[var(--text-primary)]">参考文献</h5>

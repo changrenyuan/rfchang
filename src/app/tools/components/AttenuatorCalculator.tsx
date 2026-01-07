@@ -82,7 +82,7 @@ export default function AttenuatorCalculator() {
 
         {/* 输入参数 */}
         <div className="grid gap-6 mb-8" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))' }}>
-          <div className="border-thin" style={{ backgroundColor: 'var(--bg-secondary)', padding: 'var(--space-4)' }}>
+          <div className="" style={{ backgroundColor: 'var(--bg-secondary)', padding: 'var(--space-4)' }}>
             <label className="mb-2 block text-sm font-semibold" style={{ fontFamily: 'var(--font-sans)', color: 'var(--text-primary)' }}>
               特性阻抗 Z₀ (Ω)
             </label>
@@ -95,7 +95,7 @@ export default function AttenuatorCalculator() {
               placeholder="50"
             />
           </div>
-          <div className="border-thin" style={{ backgroundColor: 'var(--bg-secondary)', padding: 'var(--space-4)' }}>
+          <div className="" style={{ backgroundColor: 'var(--bg-secondary)', padding: 'var(--space-4)' }}>
             <label className="mb-2 block text-sm font-semibold" style={{ fontFamily: 'var(--font-sans)', color: 'var(--text-primary)' }}>
               衰减量 A (dB)
             </label>
@@ -121,27 +121,27 @@ export default function AttenuatorCalculator() {
       {/* 结果显示 */}
       {results && (
         <>
-          <div className="border-thin" style={{ backgroundColor: 'var(--bg-tertiary)', padding: 'var(--space-8)' }}>
+          <div className="" style={{ backgroundColor: 'var(--bg-tertiary)', padding: 'var(--space-8)' }}>
             <h4 className="mb-6 text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--text-tertiary)' }}>
               计算结果 / Results
             </h4>
 
             <div className="grid gap-6" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))' }}>
-              <div className="border-thin" style={{ backgroundColor: 'var(--bg-secondary)', padding: 'var(--space-4)' }}>
+              <div className="" style={{ backgroundColor: 'var(--bg-secondary)', padding: 'var(--space-4)' }}>
                 <div className="mb-2 text-xs" style={{ color: 'var(--text-tertiary)' }}>R₁ (Ω)</div>
                 <div className="text-3xl font-mono font-semibold" style={{ color: 'var(--color-primary)' }}>
                   {results.r1}
                 </div>
               </div>
 
-              <div className="border-thin" style={{ backgroundColor: 'var(--bg-secondary)', padding: 'var(--space-4)' }}>
+              <div className="" style={{ backgroundColor: 'var(--bg-secondary)', padding: 'var(--space-4)' }}>
                 <div className="mb-2 text-xs" style={{ color: 'var(--text-tertiary)' }}>R₂ (Ω)</div>
                 <div className="text-3xl font-mono font-semibold" style={{ color: 'var(--color-primary)' }}>
                   {results.r2}
                 </div>
               </div>
 
-              <div className="border-thin" style={{ backgroundColor: 'var(--bg-secondary)', padding: 'var(--space-4)' }}>
+              <div className="" style={{ backgroundColor: 'var(--bg-secondary)', padding: 'var(--space-4)' }}>
                 <div className="mb-2 text-xs" style={{ color: 'var(--text-tertiary)' }}>R₃ (Ω)</div>
                 <div className="text-3xl font-mono font-semibold" style={{ color: 'var(--color-primary)' }}>
                   {results.r3}
@@ -151,7 +151,7 @@ export default function AttenuatorCalculator() {
           </div>
 
           {/* 电路图说明 */}
-          <div className="border-thin mt-6" style={{ backgroundColor: 'var(--bg-tertiary)', padding: 'var(--space-6)' }}>
+          <div className="mt-6" style={{ backgroundColor: 'var(--bg-tertiary)', padding: 'var(--space-6)' }}>
             <h4 className="mb-4 text-sm font-semibold" style={{ fontFamily: 'var(--font-serif)', color: 'var(--text-primary)' }}>
               计算公式 / Formulas
             </h4>

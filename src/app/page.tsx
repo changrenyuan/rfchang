@@ -164,7 +164,7 @@ export default function Home() {
       />
 
       {/* 导航栏 - 极简学术风格 */}
-      <nav className="border-b border-thin bg-[var(--bg-secondary)]">
+      <nav className="bg-[var(--bg-secondary)]">
         <div className="main-container">
           <div className="flex items-center justify-between">
             <div>
@@ -206,7 +206,7 @@ export default function Home() {
       </nav>
 
       {/* Hero 区域 - 学术格言与统计数据 */}
-      <section className="border-b border-thin py-16">
+      <section className="py-16">
         <div className="content-container">
           <blockquote className="mb-12 text-3xl font-serif font-light leading-relaxed text-[var(--text-primary)]">
             "射频设计不仅是电路计算，更是对电磁波的深度理解与工程智慧的平衡。"
@@ -216,7 +216,7 @@ export default function Home() {
             {stats.map((stat, index) => (
               <div
                 key={index}
-                className="border-thin bg-[var(--bg-secondary)] p-4"
+                className="bg-[var(--bg-secondary)] p-4"
               >
                 <div className="text-2xl font-mono font-semibold text-[var(--color-primary)]">
                   {stat.value}
@@ -253,7 +253,7 @@ export default function Home() {
               return (
                 <div
                   key={index}
-                  className="border-thin bg-[var(--bg-secondary)] p-6 hover:border-[var(--border-color-dark)] transition-colors"
+                  className="bg-[var(--bg-secondary)] p-6 hover:border-[var(--border-color-dark)] transition-colors"
                 >
                   <div className="mb-4">
                     <Icon className="h-6 w-6 text-[var(--color-primary)]" />
@@ -270,7 +270,7 @@ export default function Home() {
                   {/* 指标数据 */}
                   <div className="mb-4 grid grid-cols-3 gap-2 text-xs">
                     {area.metrics.map((metric, i) => (
-                      <div key={i} className="border-thin p-2">
+                      <div key={i} className="p-2">
                         <div className="font-mono text-[var(--color-primary)]">{metric.value}</div>
                         <div className="text-[var(--text-tertiary)]">{metric.label}</div>
                       </div>
@@ -295,7 +295,7 @@ export default function Home() {
       </section>
 
       {/* 技术札记 - 增强信息密度 */}
-      <section className="border-t border-thin py-16">
+      <section className="border-t py-16">
         <div className="content-container">
           <div className="mb-8 flex items-center justify-between">
             <h2 className="text-2xl font-serif font-light text-[var(--text-primary)]">
@@ -315,7 +315,7 @@ export default function Home() {
               <Link
                 key={index}
                 href={`/notes/${encodeURIComponent(note.title)}`}
-                className="block border-l-thin pl-4 py-3 hover:bg-[var(--bg-tertiary)] transition-colors"
+                className="block pl-4 py-3 hover:bg-[var(--bg-tertiary)] transition-colors"
               >
                 <div className="mb-2 flex items-center gap-3 text-xs text-[var(--text-tertiary)]">
                   <span className="font-mono">{note.date}</span>
@@ -360,7 +360,7 @@ export default function Home() {
       </section>
 
       {/* 开源资源 - 统一列表风格 */}
-      <section className="border-t border-thin py-16">
+      <section className="border-t py-16">
         <div className="main-container">
           <div className="mb-8 flex items-center justify-between">
             <h2 className="text-2xl font-serif font-light text-[var(--text-primary)]">
@@ -384,7 +384,7 @@ export default function Home() {
                 href={resource.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="border-thin bg-[var(--bg-secondary)] p-5 hover:border-[var(--border-color-dark)] transition-colors group"
+                className="bg-[var(--bg-secondary)] p-5 hover:border-[var(--border-color-dark)] transition-colors group"
               >
                 <div className="mb-3 flex items-center justify-between">
                   <div className="flex items-center gap-2">
@@ -422,9 +422,9 @@ export default function Home() {
       </section>
 
       {/* 深度研究订阅 */}
-      <section className="border-t border-thin py-16">
+      <section className="border-t py-16">
         <div className="content-container">
-          <div className="border-thin bg-[var(--bg-secondary)] p-8">
+          <div className="bg-[var(--bg-secondary)] p-8">
             <div className="mb-6 flex justify-center">
               <FileText className="h-12 w-12 text-[var(--color-primary)]" />
             </div>
@@ -439,19 +439,19 @@ export default function Home() {
             </p>
 
             <div className="grid gap-4 sm:grid-cols-2 mb-6">
-              <div className="border-thin p-4">
+              <div className="p-4">
                 <div className="mb-2 text-xs font-mono text-[var(--text-tertiary)]">Mathematical Derivation</div>
                 <div className="text-sm text-[var(--text-primary)]">完整的公式推导过程</div>
               </div>
-              <div className="border-thin p-4">
+              <div className="p-4">
                 <div className="mb-2 text-xs font-mono text-[var(--text-tertiary)]">Experimental Data</div>
                 <div className="text-sm text-[var(--text-primary)]">实测数据与仿真对比</div>
               </div>
-              <div className="border-thin p-4">
+              <div className="p-4">
                 <div className="mb-2 text-xs font-mono text-[var(--text-tertiary)]">Code Implementation</div>
                 <div className="text-sm text-[var(--text-primary)]">完整的代码实现</div>
               </div>
-              <div className="border-thin p-4">
+              <div className="p-4">
                 <div className="mb-2 text-xs font-mono text-[var(--text-tertiary)]">Reference</div>
                 <div className="text-sm text-[var(--text-primary)]">完整的参考文献</div>
               </div>
@@ -471,7 +471,7 @@ export default function Home() {
       </section>
 
       {/* 页脚 */}
-      <footer className="border-t border-thin py-12">
+      <footer className="border-t py-12">
         <div className="main-container">
           <div className="grid gap-8 md:grid-cols-4 mb-8">
             <div className="md:col-span-2">
@@ -525,7 +525,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="border-t border-thin pt-8 text-center text-xs text-[var(--text-tertiary)]">
+          <div className="border-t pt-8 text-center text-xs text-[var(--text-tertiary)]">
             <p className="mb-2">
               © 2025 RF Research. All rights reserved.
             </p>
