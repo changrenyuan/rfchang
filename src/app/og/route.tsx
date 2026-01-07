@@ -1,22 +1,11 @@
-// @ts-ignore - Next.js OG route type inference issue
 import { ImageResponse } from 'next/og';
 
 // 生成动态 OG 图片的路由处理器
 export const runtime = 'edge';
 
-export const size = {
-  width: 1200,
-  height: 630,
-};
-
-export const contentType = 'image/png';
-
-export default function Image({
-  params,
-}: {
-  params?: { title?: string };
-}) {
-  const title = params?.title || 'RF Research';
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const title = searchParams.get('title') || 'RF Research';
 
   return new ImageResponse(
     (
@@ -130,7 +119,8 @@ export default function Image({
       </div>
     ),
     {
-      ...size,
+      width: 1200,
+      height: 630,
     }
   );
 }
