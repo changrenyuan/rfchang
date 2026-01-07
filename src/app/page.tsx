@@ -371,20 +371,6 @@ export default function Home() {
           <p>© 2025 射频工程师实战平台. 专注射频设计与实战经验分享.</p>
         </div>
       </footer>
-
-      <style jsx global>{`
-        @keyframes marquee {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
-        .animate-marquee {
-          animation: marquee 20s linear infinite;
-        }
-      `}</style>
     </div>
   );
 }
