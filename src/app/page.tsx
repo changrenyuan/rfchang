@@ -3,20 +3,13 @@ import {
   Navbar,
   HeroSection,
   QuickEngineeringTools,
-  ResearchAreas,
-  EngineeringTasks,
-  TechnicalNotes,
-  OpenSourceResources,
-  DeepResearchSection,
   Footer,
 } from '@/components';
 import {
-  researchAreas,
-  technicalNotes,
-  openSourceResources,
-  engineeringTasks,
   stats,
 } from '@/data';
+import Link from 'next/link';
+import { BookOpen, ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: '常人元 - 射频工程专家 | RF Engineering Lab',
@@ -84,20 +77,67 @@ export default function Home() {
       {/* RF 工程快捷入口 */}
       <QuickEngineeringTools />
 
-      {/* 研究方向 */}
-      <ResearchAreas areas={researchAreas} />
+      {/* 知识库入口 */}
+      <section className="py-20 bg-[var(--bg-secondary)]">
+        <div className="content-container">
+          <div className="flex items-center gap-3 mb-8">
+            <BookOpen className="h-8 w-8 text-[var(--color-primary)]" />
+            <h2 className="text-3xl font-serif font-semibold text-[var(--text-primary)]">
+              知识库
+            </h2>
+          </div>
 
-      {/* 典型工程任务 */}
-      <EngineeringTasks taskGroups={engineeringTasks} />
+          <p className="text-lg text-[var(--text-secondary)] mb-8 max-w-3xl">
+            记录射频工程核心知识，从基础理论到实战应用。涵盖传输线理论、史密斯圆图、阻抗匹配、功率放大器设计、VNA 使用等内容。
+          </p>
 
-      {/* 技术札记 */}
-      <TechnicalNotes notes={technicalNotes} />
+          <div className="grid gap-6 md:grid-cols-3 mb-12">
+            <div className="bg-[var(--bg-primary)] p-6">
+              <h3 className="text-xl font-serif font-medium text-[var(--text-primary)] mb-3">
+                基础理论
+              </h3>
+              <ul className="space-y-2 text-sm text-[var(--text-secondary)]">
+                <li>• 传输线理论</li>
+                <li>• 史密斯圆图</li>
+                <li>• 阻抗匹配网络</li>
+                <li>• S参数基础</li>
+              </ul>
+            </div>
 
-      {/* 开源资源 */}
-      <OpenSourceResources resources={openSourceResources} />
+            <div className="bg-[var(--bg-primary)] p-6">
+              <h3 className="text-xl font-serif font-medium text-[var(--text-primary)] mb-3">
+                电路设计
+              </h3>
+              <ul className="space-y-2 text-sm text-[var(--text-secondary)]">
+                <li>• 功率放大器设计</li>
+                <li>• 低噪声放大器设计</li>
+                <li>• 滤波器设计</li>
+                <li>• 混频器设计</li>
+              </ul>
+            </div>
 
-      {/* 深度研究订阅 */}
-      <DeepResearchSection />
+            <div className="bg-[var(--bg-primary)] p-6">
+              <h3 className="text-xl font-serif font-medium text-[var(--text-primary)] mb-3">
+                测量技术
+              </h3>
+              <ul className="space-y-2 text-sm text-[var(--text-secondary)]">
+                <li>• VNA使用指南</li>
+                <li>• 频谱仪应用</li>
+                <li>• 功率测量</li>
+                <li>• 噪声系数测量</li>
+              </ul>
+            </div>
+          </div>
+
+          <Link
+            href="/knowledge"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--color-primary)] text-white rounded hover:bg-[var(--color-primary-hover)] transition-colors"
+          >
+            浏览知识库
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+      </section>
 
       {/* 页脚 */}
       <Footer />
