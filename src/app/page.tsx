@@ -91,44 +91,6 @@ export default function Home() {
             记录射频工程核心知识，从基础理论到实战应用。涵盖传输线理论、史密斯圆图、阻抗匹配、功率放大器设计、VNA 使用等内容。
           </p>
 
-          <div className="grid gap-6 md:grid-cols-3 mb-12">
-            <div className="bg-[var(--bg-primary)] p-6">
-              <h3 className="text-xl font-serif font-medium text-[var(--text-primary)] mb-3">
-                基础理论
-              </h3>
-              <ul className="space-y-2 text-sm text-[var(--text-secondary)]">
-                <li>• 传输线理论</li>
-                <li>• 史密斯圆图</li>
-                <li>• 阻抗匹配网络</li>
-                <li>• S参数基础</li>
-              </ul>
-            </div>
-
-            <div className="bg-[var(--bg-primary)] p-6">
-              <h3 className="text-xl font-serif font-medium text-[var(--text-primary)] mb-3">
-                电路设计
-              </h3>
-              <ul className="space-y-2 text-sm text-[var(--text-secondary)]">
-                <li>• 功率放大器设计</li>
-                <li>• 低噪声放大器设计</li>
-                <li>• 滤波器设计</li>
-                <li>• 混频器设计</li>
-              </ul>
-            </div>
-
-            <div className="bg-[var(--bg-primary)] p-6">
-              <h3 className="text-xl font-serif font-medium text-[var(--text-primary)] mb-3">
-                测量技术
-              </h3>
-              <ul className="space-y-2 text-sm text-[var(--text-secondary)]">
-                <li>• VNA使用指南</li>
-                <li>• 频谱仪应用</li>
-                <li>• 功率测量</li>
-                <li>• 噪声系数测量</li>
-              </ul>
-            </div>
-          </div>
-
           <Link
             href="/knowledge"
             className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--color-primary)] text-white rounded hover:bg-[var(--color-primary-hover)] transition-colors"
