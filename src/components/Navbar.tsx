@@ -16,39 +16,7 @@ export function Navbar() {
 
   const navLinks: NavLink[] = [
     { label: 'Knowledge', href: '/knowledge' },
-    { label: 'Publications', href: '/publications' },
     { label: 'Tools', href: '/tools' },
-    {
-      label: 'Resources',
-      href: '/resources',
-      dropdown: [
-        { label: '射频微波讲堂', href: '/resources/classroom' },
-        { label: '测试测量', href: '/resources/test' },
-        { label: '仿真设计', href: '/resources/simulation' },
-        { label: '芯片/电路', href: '/resources/circuit' },
-        { label: '白皮书', href: '/resources/whitepaper' },
-        { label: '教程', href: '/resources/tutorial' },
-      ],
-    },
-    {
-      label: 'Industry',
-      href: '/industry',
-      dropdown: [
-        { label: '行业资讯', href: '/industry/news' },
-        { label: '最新动态', href: '/industry/updates' },
-        { label: '热门产品', href: '/industry/products' },
-      ],
-    },
-    {
-      label: 'Community',
-      href: '/community',
-      dropdown: [
-        { label: '视频课程', href: '/community/videos' },
-        { label: '讲座', href: '/community/seminars' },
-        { label: '周刊订阅', href: '/community/newsletter' },
-      ],
-    },
-    { label: 'GitHub', href: 'https://github.com/changrenyuan', external: true },
     { label: 'Contact', href: '/about#contact' },
   ];
 
